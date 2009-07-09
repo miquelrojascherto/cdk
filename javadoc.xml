@@ -129,6 +129,7 @@
       <antcall target="doccheck-module"><param name="module" value="renderbasic"/></antcall>
       <antcall target="doccheck-module"><param name="module" value="rendercontrol"/></antcall>
       <antcall target="doccheck-module"><param name="module" value="renderextra"/></antcall>
+      <antcall target="doccheck-module"><param name="module" value="renderawt"/></antcall>
       <antcall target="doccheck-module"><param name="module" value="reaction"/></antcall>
       <antcall target="doccheck-module"><param name="module" value="libiocml"/></antcall>
       <antcall target="doccheck-module"><param name="module" value="libiomd"/></antcall>
