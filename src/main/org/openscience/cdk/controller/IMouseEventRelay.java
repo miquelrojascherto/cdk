@@ -29,42 +29,67 @@ package org.openscience.cdk.controller;
  * @cdk.module control
  */
 public interface IMouseEventRelay {
+    
+    public void mouseWheelMovedBackward(int clicks);
+    
+    public void mouseWheelMovedForward(int clicks);
+    
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseClickedUp(int screenCoordX, int screenCoordY);
+	public void mouseClickedUp(int screenCoordX, int screenCoordY);
+    
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseClickedDown(int screenCoordX, int screenCoordY);
+	public void mouseClickedDown(int screenCoordX, int screenCoordY);
+	
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseClickedDouble(int screenCoordX, int screenCoordY);
+	public void mouseClickedUpRight(int screenCoordX, int screenCoordY);
+	
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseMove(int screenCoordX, int screenCoordY);
+	public void mouseClickedDownRight(int screenCoordX, int screenCoordY);
+	
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseEnter(int screenCoordX, int screenCoordY);
+	public void mouseClickedDouble(int screenCoordX, int screenCoordY);
+	
 	/**
 	 * 
 	 * @param screenCoordX
 	 * @param screenCoordY
 	 */
-	public abstract void mouseExit(int screenCoordX, int screenCoordY);
+	public void mouseMove(int screenCoordX, int screenCoordY);
+	
+	/**
+	 * 
+	 * @param screenCoordX
+	 * @param screenCoordY
+	 */
+	public void mouseEnter(int screenCoordX, int screenCoordY);
+	
+	/**
+	 * 
+	 * @param screenCoordX
+	 * @param screenCoordY
+	 */
+	public void mouseExit(int screenCoordX, int screenCoordY);
+	
 	/**
 	 * 
 	 * @param screenCoordXFrom
@@ -72,7 +97,8 @@ public interface IMouseEventRelay {
 	 * @param screenCoordXTo
 	 * @param screenCoordYTo
 	 */
-	public abstract void mouseDrag(int screenCoordXFrom, int screenCoordYFrom, int screenCoordXTo, int screenCoordYTo);
+	public void mouseDrag(int screenCoordXFrom, int screenCoordYFrom, 
+	        int screenCoordXTo, int screenCoordYTo);
 	
 	
 }
