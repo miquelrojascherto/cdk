@@ -667,6 +667,10 @@
                     <includesfile name="${metainf}/renderbasic.libdepends"/>
                     <includesfile name="${metainf}/renderswt.libdepends"/>
                     <includesfile name="${metainf}/renderawt.libdepends"/>
+                    <includesfile name="${metainf}/renderextra.libdepends"/>
+                    <includesfile name="${metainf}/rendercontrol.libdepends"/>
+                    <includesfile name="${metainf}/renderawt.libdepends"/>
+                    <includesfile name="${metainf}/rendersvg.libdepends"/>
                     <includesfile name="${metainf}/standard.libdepends"/>
                     <includesfile name="${metainf}/valencycheck.libdepends"/>
                     <includesfile name="${metainf}/sdg.libdepends"/>
@@ -717,6 +721,10 @@
                     <include name="cdk-renderbasic.jar"/>
                     <include name="cdk-renderswt.jar"/>
                     <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-renderextra.jar"/>
+                    <include name="cdk-rendercontrol.jar"/>
+                    <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-rendersvg.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
                     <include name="cdk-valencycheck.jar"/>
@@ -797,6 +805,10 @@
                     <include name="cdk-renderbasic.jar"/>
                     <include name="cdk-renderswt.jar"/>
                     <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-renderextra.jar"/>
+                    <include name="cdk-rendercontrol.jar"/>
+                    <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-rendersvg.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
                     <include name="cdk-valencycheck.jar"/>

@@ -1,0 +1,31 @@
+diff a/build.xml b/build.xml	(rejected hunks)
+@@ -643,6 +643,9 @@
+                     <includesfile name="${metainf}/charges.libdepends"/>
+                     <includesfile name="${metainf}/log4j.libdepends"/>
+                     <includesfile name="${metainf}/control.libdepends"/>
++                    <includesfile name="${metainf}/controlbasic.libdepends"/>
++                    <includesfile name="${metainf}/controlextra.libdepends"/>
++                    <includesfile name="${metainf}/controlawt.libdepends"/>
+                     <includesfile name="${metainf}/datadebug.libdepends"/>
+                     <includesfile name="${metainf}/data.libdepends"/>
+                     <includesfile name="${metainf}/extra.libdepends"/>
+@@ -690,6 +697,9 @@
+                     <include name="cdk-dict.jar"/>
+                     <include name="cdk-diff.jar"/>
+                     <include name="cdk-control.jar"/>
++                    <include name="cdk-controlbasic.jar"/>
++                    <include name="cdk-controlextra.jar"/>
++                    <include name="cdk-controlawt.jar"/>
+                     <include name="cdk-datadebug.jar"/>
+                     <include name="cdk-data.jar"/>
+                     <include name="cdk-extra.jar"/>
+@@ -766,6 +780,9 @@
+                     <include name="cdk-core.jar"/>
+                     <include name="cdk-cip.jar"/>
+                     <include name="cdk-control.jar"/>
++                    <include name="cdk-controlbasic.jar"/>
++                    <include name="cdk-controlextra.jar"/>
++                    <include name="cdk-controlawt.jar"/>
+                     <include name="cdk-datadebug.jar"/>
+                     <include name="cdk-data.jar"/>
+                     <include name="cdk-diff.jar"/>
