@@ -156,4 +156,7 @@ public abstract class ControllerModuleAdapter implements IControllerModule {
         chemModelRelay.updateView();
     }
 
+    public IAtomContainer getModel() {
+        return chemModelRelay.getIChemModel().getMoleculeSet().getAtomContainer( 0 );
+    }
 }
