@@ -383,8 +383,6 @@ public class RenderingParameters {
         return willDrawNumbers;
     }
 
-    }
-
     public void setBondDistance(double bondDistance) {
         this.bondDistance = bondDistance;
     }
