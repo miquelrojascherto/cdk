@@ -619,6 +619,9 @@
             list="test-renderextra"/>
         <foreach target="compile-module" param="module"
             parallel="${parallel}" maxthreads="${threadCount}"
+            list="test-renderswt"/>
+        <foreach target="compile-module" param="module"
+            parallel="${parallel}" maxthreads="${threadCount}"
             list="test-control"/>
     </target>
 
@@ -662,6 +665,7 @@
                     <includesfile name="${metainf}/reaction.libdepends"/>
                     <includesfile name="${metainf}/render.libdepends"/>
                     <includesfile name="${metainf}/renderbasic.libdepends"/>
+                    <includesfile name="${metainf}/renderswt.libdepends"/>
                     <includesfile name="${metainf}/renderawt.libdepends"/>
                     <includesfile name="${metainf}/standard.libdepends"/>
                     <includesfile name="${metainf}/valencycheck.libdepends"/>
@@ -711,6 +715,7 @@
                     <include name="cdk-reaction.jar"/>
                     <include name="cdk-render.jar"/>
                     <include name="cdk-renderbasic.jar"/>
+                    <include name="cdk-renderswt.jar"/>
                     <include name="cdk-renderawt.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
@@ -790,6 +795,7 @@
                     <include name="cdk-reaction.jar"/>
                     <include name="cdk-render.jar"/>
                     <include name="cdk-renderbasic.jar"/>
+                    <include name="cdk-renderswt.jar"/>
                     <include name="cdk-renderawt.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
