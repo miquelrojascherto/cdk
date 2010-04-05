@@ -1,0 +1,6 @@
+diff a/build.props b/build.props	(rejected hunks)
+@@ -1,3 +1,4 @@
+ # configuration file
+ #
+ version=1.4.0
++jcpversion=8
