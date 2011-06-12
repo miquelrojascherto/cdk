@@ -73,6 +73,10 @@ public interface IMouseEventRelay {
 	 * @param screenCoordYTo
 	 */
 	public abstract void mouseDrag(int screenCoordXFrom, int screenCoordYFrom, int screenCoordXTo, int screenCoordYTo);
-	
-	
+
+	public abstract void mouseClickedDownRight(int x, int y);
+	public abstract void mouseClickedUpRight(int x, int y);
+	public abstract void mouseWheelMovedForward(int rotation);
+	public abstract void mouseWheelMovedBackward(int rotation);
+		
 }
