@@ -776,8 +776,6 @@
                     <includesfile name="${metainf}/controlbasic.libdepends"/>
                     <includesfile name="${metainf}/controlextra.libdepends"/>
                     <includesfile name="${metainf}/controlawt.libdepends"/>
-                    <includesfile name="${metainf}/render.libdepends"/>
-                    <includesfile name="${metainf}/renderbasic.libdepends"/>
                     <includesfile name="${metainf}/renderextra.libdepends"/>
                     <includesfile name="${metainf}/rendercontrol.libdepends"/>
                     <includesfile name="${metainf}/renderawt.libdepends"/>
@@ -789,8 +787,6 @@
                     <include name="cdk-controlbasic.jar"/>
                     <include name="cdk-controlextra.jar"/>
                     <include name="cdk-controlawt.jar"/>
-                    <include name="cdk-render.jar"/>
-                    <include name="cdk-renderbasic.jar"/>
                     <include name="cdk-renderextra.jar"/>
                     <include name="cdk-rendercontrol.jar"/>
                     <include name="cdk-renderawt.jar"/>
