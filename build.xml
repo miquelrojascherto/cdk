@@ -558,6 +558,9 @@
             list="renderawt,rendersvg"/>
         <foreach target="compile-module" param="module"
             parallel="${parallel}" maxthreads="${threadCount}"
+            list="renderawtextra"/>
+        <foreach target="compile-module" param="module"
+            parallel="${parallel}" maxthreads="${threadCount}"
             list="controlextra"/>
         <foreach target="compile-module" param="module"
             parallel="${parallel}" maxthreads="${threadCount}"
@@ -668,8 +671,8 @@
                     <includesfile name="${metainf}/renderswt.libdepends"/>
                     <includesfile name="${metainf}/renderawt.libdepends"/>
                     <includesfile name="${metainf}/renderextra.libdepends"/>
+                    <includesfile name="${metainf}/renderawtextra.libdepends"/>
                     <includesfile name="${metainf}/rendercontrol.libdepends"/>
-                    <includesfile name="${metainf}/renderawt.libdepends"/>
                     <includesfile name="${metainf}/rendersvg.libdepends"/>
                     <includesfile name="${metainf}/standard.libdepends"/>
                     <includesfile name="${metainf}/valencycheck.libdepends"/>
@@ -723,7 +726,7 @@
                     <include name="cdk-renderawt.jar"/>
                     <include name="cdk-renderextra.jar"/>
                     <include name="cdk-rendercontrol.jar"/>
-                    <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-renderawtextra.jar"/>
                     <include name="cdk-rendersvg.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
@@ -780,6 +783,7 @@
                     <includesfile name="${metainf}/rendercontrol.libdepends"/>
                     <includesfile name="${metainf}/renderswt.libdepends"/>
                     <includesfile name="${metainf}/rendersvg.libdepends"/>
+                    <includesfile name="${metainf}/renderawtextra.libdepends"/>
                 </fileset>
                 <fileset dir="${dist}/jar">
                     <include name="cdk-control.jar"/>
@@ -790,6 +794,7 @@
                     <include name="cdk-rendercontrol.jar"/>
                     <include name="cdk-renderswt.jar"/>
                     <include name="cdk-rendersvg.jar"/>
+                    <include name="cdk-renderawtextra.jar"/>
                 </fileset>
             </unjar>
 
@@ -853,7 +858,7 @@
                     <include name="cdk-renderawt.jar"/>
                     <include name="cdk-renderextra.jar"/>
                     <include name="cdk-rendercontrol.jar"/>
-                    <include name="cdk-renderawt.jar"/>
+                    <include name="cdk-renderawtextra.jar"/>
                     <include name="cdk-rendersvg.jar"/>
                     <include name="cdk-standard.jar"/>
                     <include name="cdk-structgen.jar"/>
