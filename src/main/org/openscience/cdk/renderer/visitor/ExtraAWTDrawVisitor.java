@@ -68,20 +68,20 @@ public class ExtraAWTDrawVisitor extends AWTDrawVisitor {
     	}
 
     	graphics.setColor(line.color);
-    	int[] a = this.transformPoint(line.x1, line.y1);
-    	int[] b = this.transformPoint(line.x2, line.y2);
+    	int[] a = this.transformPoint(line.startX, line.startY);
+    	int[] b = this.transformPoint(line.endX, line.endY);
     	graphics.drawLine(a[0], a[1], b[0], b[1]);
     	double aW = rendererModel.getParameter(
     			ArrowHeadWidth.class
     	).getValue() / scale;
     	if(line.direction){
-    		int[] c = this.transformPoint(line.x1-aW, line.y1-aW);
-    		int[] d = this.transformPoint(line.x1-aW, line.y1+aW);
+    		int[] c = this.transformPoint(line.startX-aW, line.startY-aW);
+    		int[] d = this.transformPoint(line.startX-aW, line.startY+aW);
     		graphics.drawLine(a[0], a[1], c[0], c[1]);
     		graphics.drawLine(a[0], a[1], d[0], d[1]);
     	}else{
-    		int[] c = this.transformPoint(line.x2+aW, line.y2-aW);
-    		int[] d = this.transformPoint(line.x2+aW, line.y2+aW);
+    		int[] c = this.transformPoint(line.endX+aW, line.endY-aW);
+    		int[] d = this.transformPoint(line.endX+aW, line.endY+aW);
     		graphics.drawLine(b[0], b[1], c[0], c[1]);
     		graphics.drawLine(b[0], b[1], d[0], d[1]);
     	}        

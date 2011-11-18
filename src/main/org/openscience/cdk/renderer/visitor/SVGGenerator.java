@@ -25,10 +25,7 @@
 package org.openscience.cdk.renderer.visitor;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.Point;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
@@ -248,8 +245,8 @@ public class SVGGenerator implements IDrawVisitor {
       
         int w = (int) (line.width * 
         	this.rendererModel.getParameter(Scale.class).getValue());
-        int[] a = this.transformPoint(line.x1, line.y1);
-        int[] b = this.transformPoint(line.x2, line.y2);
+        int[] a = this.transformPoint(line.startX, line.startY);
+        int[] b = this.transformPoint(line.endX, line.endY);
         newline();
 		svg.append(String.format(
 				"<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" " +
@@ -263,8 +260,8 @@ public class SVGGenerator implements IDrawVisitor {
         	ArrowHeadWidth.class
         ).getValue() / rendererModel.getParameter(Scale.class).getValue();
         if(line.direction){
-	        int[] c = this.transformPoint(line.x1-aW, line.y1-aW);
-	        int[] d = this.transformPoint(line.x1-aW, line.y1+aW);
+	        int[] c = this.transformPoint(line.startX-aW, line.startY-aW);
+	        int[] d = this.transformPoint(line.startX-aW, line.startY+aW);
 	        newline();
 			svg.append(String.format(
 					"<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" " +
@@ -284,8 +281,8 @@ public class SVGGenerator implements IDrawVisitor {
 					d[1]
 					));
         }else{
-	        int[] c = this.transformPoint(line.x2+aW, line.y2-aW);
-	        int[] d = this.transformPoint(line.x2+aW, line.y2+aW);
+	        int[] c = this.transformPoint(line.endX+aW, line.endY-aW);
+	        int[] d = this.transformPoint(line.endX+aW, line.endY+aW);
 	        newline();
 			svg.append(String.format(
 					"<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" " +
