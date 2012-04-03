@@ -169,9 +169,22 @@ public class CDKConstants {
      */
     public static final int IS_TYPEABLE = 11;
     /**
+     * Flag used for marking uncertainty of the bond order.
+     * If used on an <br>
+     * <ul>
+     *  <li>IMolecule it means that one or several of the bonds have 
+     * 		this flag raised (which may indicate aromaticity).</li>
+     *  <li>IBond it means that it's unclear whether the bond is a single or
+     * 		double bond.</li>
+     *  <li>IAtom it is a way for the Smiles parser to indicate that this atom was 
+     * 		written with a lowercase letter, e.g. 'c' rather than 'C'</li>
+     * </ul>
+     */
+    public final static int SINGLE_OR_DOUBLE = 12;
+    /**
      * Maximum flags array index.
      */
-    public final static int MAX_FLAG_INDEX = 12;
+    public final static int MAX_FLAG_INDEX = 13;
     /**
      * Flag used for JUnit testing the pointer functionality.
      */
