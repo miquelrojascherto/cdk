@@ -1,9 +1,4 @@
-/*  $RCSfile$
- *  $Author$
- *  $Date$
- *  $Revision$
- *
- *  Copyright (C) 2012  Klas Jšnsson
+/*  Copyright (C) 2012  Klas JÃ¶nsson
  *
  *  Contact: cdk-devel@lists.sourceforge.net
  *
