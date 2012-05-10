@@ -12,3 +12,4 @@ cdk-atomtype.jar
 cdk-extra.jar
 cdk-testdata.jar
 cdk-test-core.jar
+cdk-silent.jar

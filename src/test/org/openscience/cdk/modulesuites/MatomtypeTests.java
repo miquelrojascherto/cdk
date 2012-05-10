@@ -23,6 +23,7 @@ package org.openscience.cdk.modulesuites;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+import org.openscience.cdk.atomtype.GeneratorAtomTypeMatcherTest;
 import org.openscience.cdk.atomtype.SybylAtomTypeMatcherTest;
 import org.openscience.cdk.config.atomtypes.OWLAtomTypeMappingHandlerTest;
 import org.openscience.cdk.config.atomtypes.OWLAtomTypeMappingReaderTest;
@@ -40,6 +41,7 @@ import org.openscience.cdk.coverage.AtomtypeCoverageTest;
     AtomtypeCoverageTest.class,
     OWLAtomTypeMappingHandlerTest.class,
     OWLAtomTypeMappingReaderTest.class,
-    SybylAtomTypeMatcherTest.class
+    SybylAtomTypeMatcherTest.class,
+    GeneratorAtomTypeMatcherTest.class
 })
 public class MatomtypeTests {}
