@@ -55,7 +55,6 @@ public class ATASaturationCheckerTest extends org.openscience.cdk.CDKTestCase {
 
 	
 	@Before
-    @Test
     public void setUp() throws Exception {
     	satcheck = new SaturationChecker();
     }
