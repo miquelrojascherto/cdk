@@ -50,7 +50,7 @@ import org.openscience.cdk.tools.manipulator.BondManipulator;
 public class AtomTypeAwareSaturationChecker implements IValencyChecker,
 IDeduceBondOrderTool {
 	
-	SaturationChecker sc;
+	SaturationChecker staturationChecker;
 	private static ILoggingTool logger =
 			LoggingToolFactory.createLoggingTool(SaturationChecker.class);
 	private IBond.Order oldBondOrder;
@@ -60,7 +60,7 @@ IDeduceBondOrderTool {
 	 * Constructs an {@link AtomTypeAwareSaturationChecker} checker.
 	 */
 	public AtomTypeAwareSaturationChecker() {
-		sc = new SaturationChecker();
+		staturationChecker = new SaturationChecker();
 	}
 	
 	/**
@@ -286,21 +286,21 @@ IDeduceBondOrderTool {
 	 * if not used removed*/
 	/** {@inheritDoc} */
 	@Override
-	public void saturate(IAtomContainer ac) throws CDKException {
-		sc.saturate(ac);
+	public void saturate(IAtomContainer container) throws CDKException {
+		staturationChecker.saturate(container);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public boolean isSaturated(IAtomContainer ac) throws CDKException {
-		return sc.isSaturated(ac);
+	public boolean isSaturated(IAtomContainer container) throws CDKException {
+		return staturationChecker.isSaturated(container);
 	}
 
 	/** {@inheritDoc} */
 	@Override
 	public boolean isSaturated(IAtom atom, IAtomContainer container)
 			throws CDKException {
-		return sc.isSaturated(atom, container);
+		return staturationChecker.isSaturated(atom, container);
 	}
 	
 	/**
@@ -314,6 +314,11 @@ IDeduceBondOrderTool {
 	@SuppressWarnings("serial")
 	private class CantDecideBondOrderException extends CDKException {
 
+		/**
+		 * Creates a new {@link CantDecideBondOrderException} with a given message.
+		 *
+		 * @param message Explanation about why the decision could not be made.
+		 */
 		public CantDecideBondOrderException(String message) {
 			super(message);
 		}
