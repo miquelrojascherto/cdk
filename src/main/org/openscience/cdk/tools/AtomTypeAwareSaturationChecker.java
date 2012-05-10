@@ -29,13 +29,15 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.BondManipulator;
 
 /**
  * This class tries to figure out the bond order of the bonds that has the flag 
  * <code>SINGLE_OR_DOUBLE</code> raised (i.e. set to <code>true</code>).<br>
  * The code is written with the assumption that the properties of the atoms in
- * the molecule has configured with the help of AtomContainerManipulator. 
+ * the molecule has configured with the help of {@link AtomContainerManipulator}.
+ * This class uses the {@link SaturationChecker} internally.
  * 
  * @author Klas J&ouml;nsson
  * @author Egon Willighagen
@@ -53,7 +55,10 @@ IDeduceBondOrderTool {
 			LoggingToolFactory.createLoggingTool(SaturationChecker.class);
 	private IBond.Order oldBondOrder;
 	private int startBond;
-	
+
+	/**
+	 * Constructs an {@link AtomTypeAwareSaturationChecker} checker.
+	 */
 	public AtomTypeAwareSaturationChecker() {
 		sc = new SaturationChecker();
 	}
@@ -92,7 +97,7 @@ IDeduceBondOrderTool {
 	 * @param bond The current bond 
 	 * @param atomContainer The molecule
 	 * @return The new index, just to ensure it's updated
-	 * @throws CDKException
+	 * @throws CDKException when no solution can be found
 	 */
 	private int backTrack(int i, IBond bond, IAtomContainer atomContainer) throws CDKException {
 		bond.setOrder(IBond.Order.SINGLE);
@@ -133,7 +138,7 @@ IDeduceBondOrderTool {
 	 * 
 	 * @param atomContainer The molecule
 	 * @param index The index of the current bond
-	 * @throws CDKException
+	 * @throws CDKException when no suitable solution can be found
 	 */
 	private void checkBond(IAtomContainer atomContainer, int index) throws CDKException {
 		IBond bond = atomContainer.getBond(index);
@@ -157,7 +162,8 @@ IDeduceBondOrderTool {
 	 * it to that.
 	 * 
 	 * @param bond The bond to be investigated
-	 * @param atomContainer The <code>IAtomContainer</code> that contains the bond
+	 * @param atomContainer The {@link IAtomContainer} that contains the bond
+	 * @throws CDKEXception when the bond cannot be further increased
 	 */
 	private void setMaxBondOrder(IBond bond, IAtomContainer atomContainer) throws CDKException {
 		if (bondOrderCanBeIncreased(bond, atomContainer)) {
@@ -173,9 +179,9 @@ IDeduceBondOrderTool {
 	 * bond is between only two atoms.
 	 * 
 	 * @param bond The bond to check
-	 * @param atomContainer The AtomContainer that the bond belongs to
+	 * @param atomContainer The {@link IAtomContainer} that the bond belongs to
 	 * @return True if it is possibly to increase the bond order
-	 * @throws CDKException
+	 * @throws CDKException 
 	 */
 	public boolean bondOrderCanBeIncreased(IBond bond, IAtomContainer atomContainer) throws CDKException {
 		boolean atom0isUnsaturated = false, atom1isUnsaturated = false;
@@ -227,7 +233,7 @@ IDeduceBondOrderTool {
 	 * 
 	 * @param atom The <code>IAtom</code> to be investigated
 	 * @return The max number of bonds the <code>IAtom</code> can have
-	 * @throws CDKException
+	 * @throws CDKException when the atom's valency is not set
 	 */
 	public double getMaxNoOfBonds(IAtom atom) throws CDKException {
 		double noValenceElectrons = atom.getValency() == CDKConstants.UNSET ? -1 : atom.getValency();
@@ -278,16 +284,19 @@ IDeduceBondOrderTool {
 	/* FIXME All or some of the methods below should probably be implemented 
 	 * in this class and not as now be handled of the SaturateChecker class or
 	 * if not used removed*/
+	/** {@inheritDoc} */
 	@Override
 	public void saturate(IAtomContainer ac) throws CDKException {
 		sc.saturate(ac);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isSaturated(IAtomContainer ac) throws CDKException {
 		return sc.isSaturated(ac);
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public boolean isSaturated(IAtom atom, IAtomContainer container)
 			throws CDKException {
