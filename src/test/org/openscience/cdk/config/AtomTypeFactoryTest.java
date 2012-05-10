@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.CDKTestCase;
+import org.openscience.cdk.config.filter.IAtomTypeFilter;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IAtomType.Hybridization;
@@ -115,6 +116,18 @@ public class AtomTypeFactoryTest extends CDKTestCase {
     	IAtomType[] types = atf.getAllAtomTypes();
     	Assert.assertNotNull(types);
     	Assert.assertNotSame(0, types.length);
+    }
+    
+    @Test
+	public void testGetAllAtomTypesByFilter() throws Exception {
+    	AtomTypeFactory atf = AtomTypeFactory.getInstance(new ChemObject().getBuilder());
+    	IAtomType[] types = atf.getAllAtomTypes(new IAtomTypeFilter() {
+			public boolean passes(IAtomType type) {
+				return false;
+			}
+		});
+    	Assert.assertNotNull(types);
+    	Assert.assertSame(0, types.length);
     }
     
     @Test

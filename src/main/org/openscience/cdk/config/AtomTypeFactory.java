@@ -30,6 +30,7 @@ import java.util.Map;
 
 import org.openscience.cdk.annotations.TestClass;
 import org.openscience.cdk.annotations.TestMethod;
+import org.openscience.cdk.config.filter.IAtomTypeFilter;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.NoSuchAtomTypeException;
 import org.openscience.cdk.interfaces.IAtom;
@@ -348,6 +349,29 @@ public class AtomTypeFactory {
         return (IAtomType[])atomtypeList.toArray(new IAtomType[atomtypeList.size()]);
 	}
 
+	/**
+	 * Gets the allAtomTypes attribute of the AtomTypeFactory object.
+	 *
+	 * @return    The allAtomTypes value
+	 */
+    @TestMethod("testGetAllAtomTypesByFilter")
+    public IAtomType[] getAllAtomTypes(IAtomTypeFilter filter)
+	{
+		logger.debug("Returning list of size: ", getSize());
+		List<IAtomType> atomtypeList = new ArrayList<IAtomType>();
+        for (IAtomType atomType : atomTypes) {
+        	if (filter.passes(atomType)) {
+        		try {
+        			IAtomType clone = (IAtomType) atomType.clone();
+        			atomtypeList.add(clone);
+        		} catch (CloneNotSupportedException e) {
+        			logger.error("Could not clone IAtomType: ", e.getMessage());
+        			logger.debug(e);
+        		}
+        	}
+        }
+        return (IAtomType[])atomtypeList.toArray(new IAtomType[atomtypeList.size()]);
+	}
 
 	/**
 	 * Configures an atom. Finds the correct element type by looking at the Atom's
