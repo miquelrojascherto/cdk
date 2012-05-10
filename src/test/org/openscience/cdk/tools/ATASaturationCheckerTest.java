@@ -49,6 +49,7 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
  *
  * @author Klas J&ouml;nsson
  * @cdk.created 2012-04-18
+ * @cdk.module  test-valency
  */
 public class ATASaturationCheckerTest extends org.openscience.cdk.CDKTestCase {
 
