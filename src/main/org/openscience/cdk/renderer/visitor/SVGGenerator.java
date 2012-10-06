@@ -1,5 +1,5 @@
-/**
- *  Copyright (C) 2001-2007  The Chemistry Development Kit (CDK) Project
+/*  Copyright (C) 2007  Gilleain Torrance <maclean@users.sf.net>
+ *                2012  Ralf Stephan <ralf@ark.in-berlin.de>     
  *
  *  Contact: cdk-devel@lists.sourceforge.net
  *
@@ -51,22 +51,21 @@ import org.openscience.cdk.renderer.generators.BasicSceneGenerator.Scale;
  * by drawing paths and not using fonts. This is an indirect
  * consequence of font commercialisation which has successfully
  * prevented SVG fonts from becoming usable on all browsers. See
- * https://github.com/JChemPaint/jchempaint/wiki/The-svg-font-problem-and-its-solution
+ * <a href="https://github.com/JChemPaint/jchempaint/wiki/The-svg-font-problem-and-its-solution">https://github.com/JChemPaint/jchempaint/wiki/The-svg-font-problem-and-its-solution</a>.
  *
- * So, we convert an open font to SVG paths and use these.
+ * <p>So, we convert an open font to SVG paths and use these.
  * To resolve the problem of placement, we use bbox, advance and
  * (maybe later) kerning values from the same font. 
  * To make sure bonds don't cross text, we use two passes where
  * text is drawn first and the bonds second.
  * 
- * Two-pass implementation (c) 2012 by
- * @author Ralf Stephan <ralf@ark.in-berlin.de>
- * @jcp.issue #2
+ * <p>Two-pass implementation (c) 2012 by Ralf and the first code layer by Gilleain.
  * 
- * First code layer (c) 2007 by
+ * @author Ralf Stephan <ralf@ark.in-berlin.de>
  * @author maclean
  * @cdk.module rendersvg
  * @cdk.bug 2403250
+ * @jcp.issue #2
  */
 public class SVGGenerator implements IDrawVisitor {
 
