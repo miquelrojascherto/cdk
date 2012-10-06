@@ -5,6 +5,9 @@ package org.openscience.cdk.renderer.font;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @cdk.module rendersvg
+ */
 public class FreeSansBoldGM {
 
 	public Map<Integer, GlyphMetrics> map;

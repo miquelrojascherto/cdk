@@ -2,6 +2,9 @@
 
 package org.openscience.cdk.renderer.font;
 
+/**
+ * @cdk.module rendersvg
+ */
 public class GlyphMetrics {
 
     public int xMin, xMax, yMin, yMax, adv;
