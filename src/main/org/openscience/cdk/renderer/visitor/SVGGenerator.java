@@ -75,7 +75,7 @@ public class SVGGenerator implements IDrawVisitor {
      */
 	private RendererModel rendererModel;
 	
-	public static final String HEADER = "<?xml version=\"1.0\"?>\n" +
+	private static final String HEADER = "<?xml version=\"1.0\"?>\n" +
 			"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\"\n" +
 			"\"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
 			"<svg xmlns=\"http://www.w3.org/2000/svg\" " +
@@ -100,6 +100,9 @@ public class SVGGenerator implements IDrawVisitor {
 	
 	//------------------------------------------------------------------
 
+	/***
+	 * Constructs a new generator which cannot be reused.
+	 */
 	public SVGGenerator() {
 		the_fm = new FreeSansBoldGM();
 		the_fm.init();
@@ -124,6 +127,12 @@ public class SVGGenerator implements IDrawVisitor {
 		svg.append("\n");
 	}
 	
+	/**
+	 * Transforms from internal to canvas coordinates.
+	 *
+	 * @param x
+	 * @param y
+	 */
 	public double[] transformPoint(double x, double y) {
         double[] src = new double[] {x, y};
         double[] dest = new double[2];
@@ -131,6 +140,12 @@ public class SVGGenerator implements IDrawVisitor {
         return dest;
     }
 	
+	/**
+	 * Transforms from canvas to internal coordinates.
+	 *
+	 * @param x
+	 * @param y
+	 */
 	public double[] invTransformPoint (double x, double y) {
         double[] src = new double[] {x, y};
         double[] dest = new double[2];
@@ -147,12 +162,12 @@ public class SVGGenerator implements IDrawVisitor {
 	 * atoms, tgList has all strings. We also write the character
 	 * paths immediately as DEFS into the SVG, for reference.
 	 * 
-	 * @param e
+	 * @param element
 	 */
-	private void writeDEFS (TextGroupElement e) {
-		if (e.text.length()>1 && !tgMap.containsKey(e.text))
-			tgMap.put(e.text, new Point2d(0,0));
-		for (char c : e.text.toCharArray()) { 
+	private void writeDEFS (TextGroupElement element) {
+		if (element.text.length()>1 && !tgMap.containsKey(element.text))
+			tgMap.put(element.text, new Point2d(0,0));
+		for (char c : element.text.toCharArray()) { 
 			String idstr = "Atom-" + c;
 			GlyphMetrics m = the_fm.map.get((int) c);
 			if (!ptMap.containsKey((int) c)) 
@@ -168,7 +183,7 @@ public class SVGGenerator implements IDrawVisitor {
 		
 		// Set hyd and hPos according to entry
 		int hyd=0, hPos=0;
-		for (TextGroupElement.Child ch : e.children) {
+		for (TextGroupElement.Child ch : element.children) {
 			if (ch.text.equals ("H")) {
 				if (ch.subscript == null) hyd=1;
 				else if (ch.subscript.equals("2")) hyd=2;
@@ -204,6 +219,8 @@ public class SVGGenerator implements IDrawVisitor {
 	/**
 	 * In this first pass, visiting elements are copied to
 	 * a list, and DEFS/PATH elements are written for all TextGroups.
+	 *
+	 * @param element
 	 */
 	public void visit(IRenderingElement element) {
 		elList.add(element);
@@ -214,6 +231,11 @@ public class SVGGenerator implements IDrawVisitor {
             writeDEFS ((TextGroupElement) element);
 	}
 	
+	/**
+	 * Output of SVG corresponding to OvalElement parameter
+	 *
+	 * @param oval
+	 */
 	public void draw (OvalElement oval) {
 		newline();
 		double[] p1 = transformPoint(oval.xCoord - oval.radius, oval.yCoord - oval.radius);
@@ -233,6 +255,11 @@ public class SVGGenerator implements IDrawVisitor {
 				x + r, y + r, r, r));
 	}
 
+	/**
+	 * Output of SVG corresponding to AtomSymbolElement parameter.
+	 *
+	 * @param atomSymbol
+	 */
 	public void draw (AtomSymbolElement atomSymbol) {
 		newline();
 		double[] p = transformPoint(atomSymbol.xCoord, atomSymbol.yCoord);
@@ -246,6 +273,11 @@ public class SVGGenerator implements IDrawVisitor {
 				));
 	}
 
+	/**
+	 * Conversion of Java.awt.Color to SVG color string.
+	 *
+	 * @param color
+	 */
 	// this is a stupid method, but no idea how else to do it...
 	private String toColorString(Color color) {
 		if (color == Color.RED) {
@@ -257,6 +289,11 @@ public class SVGGenerator implements IDrawVisitor {
 		}
 	}
 
+	/**
+	 * Output of SVG corresponding to TextElement parameter.
+	 *
+	 * @param textElement
+	 */
 	public void draw (TextElement textElement) {
 		newline();
 		double[] p = transformPoint(textElement.xCoord, textElement.yCoord);
@@ -269,27 +306,29 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 	
 	/**
+	 * Output of SVG corresponding to TextGroupElement parameter.
+	 *
 	 * At the time of this call, all that we need is in place:
 	 * the SVG character macros are written and the bboxes computed.
 	 * The textgroup text is now placed with its center at the
 	 * position of the atom. Implicit hydrogens are added.
 	 * 
-	 * @param e
+	 * @param element
 	 */
-	public void draw (TextGroupElement e) {
+	public void draw (TextGroupElement element) {
 		newline();
-		double[] pos = transformPoint(e.xCoord, e.yCoord);
+		double[] pos = transformPoint(element.xCoord, element.yCoord);
 		
 		// Determine the bbox of the Atom symbol text
 		Point2d bb;
-		if (e.text.length() == 1) 
-			bb = ptMap.get((int)e.text.charAt(0));
+		if (element.text.length() == 1) 
+			bb = ptMap.get((int)element.text.charAt(0));
 		else
-			bb = tgMap.get(e.text);
+			bb = tgMap.get(element.text);
 		
 		// Set hyd and hPos according to entry
 		int hyd=0, hPos=0;
-		for (TextGroupElement.Child c : e.children) {
+		for (TextGroupElement.Child c : element.children) {
 			if (c.text.equals ("H")) {
 				if (c.subscript == null) hyd=1;
 				else if (c.subscript.equals("2")) hyd=2;
@@ -316,7 +355,7 @@ public class SVGGenerator implements IDrawVisitor {
 		y = pos[1] + trscale*bb.y/2;
 		svg.append(String.format(
 				"<use xlink:href=\"#Atom-%s\" x=\"%4.2f\" y=\"%4.2f\"/>",
-				e.text, x, y));
+				element.text, x, y));
 		if (hyd != 0) {
 			GlyphMetrics m = the_fm.map.get(50+hyd);
 			if (hPos>0) 
@@ -438,6 +477,10 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 
 	/**
+	 * Helper that applies all bboxes in bbList to shorten the
+	 * bond given by two point parameters. Needed for quality
+	 * output where bonds stop short of chemical symbols.
+	 *
 	 * Applies all collected bboxes to the two points and, if one is
 	 * inside a bbox, places it at the bbox's edge, same direction.
 	 * Intended to be cumulative, i.e., both points may be moved more
@@ -486,6 +529,11 @@ public class SVGGenerator implements IDrawVisitor {
 		return true;
 	}
 
+	/**
+	 * Output of SVG corresponding to WedgeLineElement parameter.
+	 *
+	 * @param wedge
+	 */
 	public void draw (WedgeLineElement wedge) {
 		double[] p1 = transformPoint(wedge.firstPointX, wedge.firstPointY);
 		double[] p2 = transformPoint(wedge.secondPointX, wedge.secondPointY);
@@ -522,9 +570,16 @@ public class SVGGenerator implements IDrawVisitor {
         //}
 	}
 	
-	//    public void draw (WigglyLineElement wedge) {
-		    	//TODO add code. see http://www.w3.org/TR/SVG/paths.html#PathDataCurveCommands
-	//	    }
+	/* 
+	/**
+	 * Output of SVG corresponding to WigglyLineElement parameter.
+	 * Not yet implemented.
+	 *
+	 * @param wedge
+	 */
+	/* public void draw (WigglyLineElement wedge) {
+	    //TODO add code. see http://www.w3.org/TR/SVG/paths.html#PathDataCurveCommands
+	} */
 	
 	    private void drawCrissCrossWedge(Point2d vertexA, Point2d vertexB,
 						Point2d vertexC) {
@@ -590,11 +645,22 @@ public class SVGGenerator implements IDrawVisitor {
 				));
     }
 
+    /**
+     * Output of SVG corresponding to PathElement parameter.
+     * Not yet implemented.
+     *
+     * @param path
+     */
 	public void draw (PathElement path) {
 
 	}
 	
-
+	/**
+	 * Output of SVG corresponding to LineElement (=single
+	 * bond) parameter.
+	 *
+	 * @param line
+	 */
 	public void draw (LineElement line) {
 		newline();
 		double[] p1 = transformPoint(line.firstPointX, line.firstPointY);
@@ -654,6 +720,11 @@ public class SVGGenerator implements IDrawVisitor {
         }
     }
 
+    /**
+     * Output of SVG corresponding to ArrowElement parameter.
+     *
+     * @param line
+     */
     public void draw (ArrowElement line) {
 	double scale = rendererModel.getParameter(Scale.class).getDefault();      
 	double ahw = rendererModel.getParameter(ArrowHeadWidth.class).getDefault();      
@@ -715,7 +786,11 @@ public class SVGGenerator implements IDrawVisitor {
         }        
     }
 
-
+    /**
+     * Output of SVG corresponding to RectangleElement parameter.
+     *
+     * @param rectangleElement
+     */
 	public void draw (RectangleElement rectangleElement) {
         double[] pA = this.transformPoint(rectangleElement.xCoord, rectangleElement.yCoord);
         double[] pB = this.transformPoint(rectangleElement.xCoord+rectangleElement.width, rectangleElement.yCoord);
@@ -736,6 +811,11 @@ public class SVGGenerator implements IDrawVisitor {
 
 	}
 
+	/**
+	 * Sets the affine transform associated with this generator.
+	 *
+	 * @param transform
+	 */
     public void setTransform(AffineTransform transform) {
 		this.transform = transform;
 		this.transform.setToScale(30, -30);
