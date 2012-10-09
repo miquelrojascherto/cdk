@@ -465,6 +465,8 @@ public class SVGGenerator implements IDrawVisitor {
 		newline();
 		svg.append("</g>\n</svg>\n");
 		
+		if (bbox==null)
+			bbox = new Rectangle2D.Double(0, 0, 0, 0);
 		int i = svg.indexOf ("0 0 1234567890");
 		svg.replace(i, i+14, String.format("0 0 %4.0f %4.0f",
 				bbox.getWidth()+2*vbpadding,

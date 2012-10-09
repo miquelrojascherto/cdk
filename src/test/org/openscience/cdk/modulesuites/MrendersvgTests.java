@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.openscience.cdk.coverage.RendersvgCoverageTest;
+import org.openscience.cdk.renderer.visitor.SVGGeneratorTest;
 
 /**
  * TestSuite that runs all the tests for the CDK <code>rendersvg</code>
@@ -31,6 +32,7 @@ import org.openscience.cdk.coverage.RendersvgCoverageTest;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	RendersvgCoverageTest.class
+	RendersvgCoverageTest.class,
+	SVGGeneratorTest.class
 })
 public class MrendersvgTests {}
