@@ -23,6 +23,11 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openscience.cdk.Atom;
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 /**
@@ -43,11 +48,43 @@ public class CDKBasedMM2AtomTypeMatcherTest extends AbstractMM2AtomTypeTest {
 	}
 	
 	@Test public void testFindMatchingAtomType_IAtomContainer_IAtom() throws Exception {
-		Assert.fail("Not implemented yet");
+        IAtomContainer mol = new AtomContainer();
+        IAtom atom = new Atom("C");
+        final IAtomType.Hybridization thisHybridization = IAtomType.Hybridization.SP3;
+        atom.setHybridization(thisHybridization);
+        mol.addAtom(atom);
+
+        IAtomTypeMatcher matcher = CDKBasedMM2AtomTypeMatcher.getInstance(
+        	SilentChemObjectBuilder.getInstance());
+        IAtomType type = matcher.findMatchingAtomType(mol, atom);
+        Assert.assertNotNull(type);
+        Assert.assertEquals("Csp3", type.getAtomTypeName());
 	}
 
 	@Test public void testFindMatchingAtomType_IAtomContainer() throws Exception {
-		Assert.fail("Not implemented yet");
+        IAtomContainer mol = new AtomContainer();
+        IAtom atom = new Atom("C");
+        final IAtomType.Hybridization thisHybridization = IAtomType.Hybridization.SP3;
+        atom.setHybridization(thisHybridization);
+        mol.addAtom(atom);
+
+        IAtomTypeMatcher matcher = CDKBasedMM2AtomTypeMatcher.getInstance(
+        	SilentChemObjectBuilder.getInstance());
+        IAtomType[] types = matcher.findMatchingAtomType(mol);
+        Assert.assertNotNull(types);
+        Assert.assertEquals(1, types.length);
+        Assert.assertEquals("Csp3", types[0].getAtomTypeName());
+	}
+
+	@Test public void testCsp3() throws Exception {
+        IAtomContainer mol = new AtomContainer();
+        IAtom atom = new Atom("C");
+        final IAtomType.Hybridization thisHybridization = IAtomType.Hybridization.SP3;
+        atom.setHybridization(thisHybridization);
+        mol.addAtom(atom);
+
+        String[] expectedTypes = {"Csp3"};
+        assertAtomTypes(testedAtomTypes, expectedTypes, mol);
 	}
 
     @Test public void testForDuplicateDefinitions() {
