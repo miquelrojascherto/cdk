@@ -133,110 +133,337 @@
   <!-- the atom types -->
 
   <at:AtomType rdf:ID="Csp3">
+    <rdfs:label>C</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Csp2">
+    <rdfs:label>Csp2</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Ccarbonyl">
+    <rdfs:label>C=</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Csp">
+    <rdfs:label>Csp</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="H">
+    <rdfs:label>HC</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Osp3">
+    <rdfs:label>O</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Osp2">
+    <rdfs:label>O=</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Nsp3">
+    <rdfs:label>N</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Nsp2">
+    <rdfs:label>Nsp2</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Nsp">
+    <rdfs:label>Nsp</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="F">
+    <rdfs:label>F</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#F"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Cl">
+    <rdfs:label>CL</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Cl"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Br">
+    <rdfs:label>BR</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Br"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="I">
+    <rdfs:label>I</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#I"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="S">
+    <rdfs:label>S</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#S"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Sonium">
+    <rdfs:label>S+</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#S"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Soxide">
+    <rdfs:label>>SN</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#S"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="SO2">
+    <rdfs:label>SO2</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#S"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Si">
+    <rdfs:label>SI</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Si"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="LP">
+    <rdfs:label>LP</rdfs:label>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Halc">
+    <rdfs:label>HO</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Ccyc">
+    <rdfs:label>CR3R</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Hamine">
+    <rdfs:label>HN</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Hcarbacid">
+    <rdfs:label>HOCO</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Pine">
+    <rdfs:label>P</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#P"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Btrig">
+    <rdfs:label>B</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#B"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Btetrah">
+    <rdfs:label>BTET</rdfs:label>
     <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#B"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="HN2">
+    <rdfs:label>HN2</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="C.">
+    <rdfs:label>C.</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Cplus">
+    <rdfs:label>C+</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="GE">
+    <rdfs:label>GE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Ge"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="SN">
+    <rdfs:label>SN</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Sn"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="PB">
+    <rdfs:label>PB</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Pb"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="SE">
+    <rdfs:label>SE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Se"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="TE">
+    <rdfs:label>TE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Te"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="D">
+    <rdfs:label>D</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NPYD">
+    <rdfs:label>NPYD</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Oar">
+    <rdfs:label>Oar</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Sthi">
+    <rdfs:label>Sthi</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#S"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="N2OX">
+    <rdfs:label>N2OX</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="HS">
+    <rdfs:label>HS</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nazide">
+    <rdfs:label>=N=</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NO3">
+    <rdfs:label>NO3</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="OM">
+    <rdfs:label>OM</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="HNplus">
+    <rdfs:label>HN+</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="OR">
+    <rdfs:label>OR</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Car">
+    <rdfs:label>Car</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="HE">
+    <rdfs:label>HE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#He"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NE">
+    <rdfs:label>NE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Ne"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="AR">
+    <rdfs:label>AR</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Ar"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="KR">
+    <rdfs:label>Kr</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Kr"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="XE">
+    <rdfs:label>XE</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Xe"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="MG">
+    <rdfs:label>MG</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Mg"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="PTET">
+    <rdfs:label>PTET</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#P"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="FE2">
+    <rdfs:label>FE+2</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Fe"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="FE3">
+    <rdfs:label>FE+3</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Fe"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NI2">
+    <rdfs:label>NI+2</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Ni"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NI3">
+    <rdfs:label>NI+3</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Ni"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="CO2">
+    <rdfs:label>CO+2</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Co"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="CO3">
+    <rdfs:label>CO+3</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#Co"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="OX">
+    <rdfs:label>OX</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="OK">
+    <rdfs:label>OK</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#O"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Cplusplus">
+    <rdfs:label>C++</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nimine">
+    <rdfs:label>N=C</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="NPDplus">
+    <rdfs:label>NPD+</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nimminium">
+    <rdfs:label>N+=</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nohoxime">
+    <rdfs:label>N2OX</rdfs:label>
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#N"/>
   </at:AtomType>
 
   <at:AtomType rdf:ID="Hvinyl">
