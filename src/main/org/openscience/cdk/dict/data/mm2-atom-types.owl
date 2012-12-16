@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://cdk.sf.net/ontologies/atomtype/mm2#"
+         xml:base="http://cdk.sf.net/ontologies/atomtype/mm2#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:at="http://cdk.sf.net/ontologies/atomtypes#"
+  xmlns:elem="http://cdk.sf.net/ontologies/elements#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dc="http://dublincore.org/"
+>
+
+  <owl:Ontology rdf:about="">
+    <rdfs:label>MM2 Atom Type Ontology</rdfs:label>
+    <owl:versionInfo>$Id$</owl:versionInfo>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="http://cdk.sf.net/ontologies/atomtypes#AtomType"/>
+
+  <!-- The Elements from http://cdk.sf.net/ontologies/elements# -->
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#H"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#He"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Li"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Be"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#B"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#C"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#N"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#O"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#F"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ne"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Na"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Mg"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Al"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Si"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#P"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#S"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cl"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ar"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#K"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ca"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sc"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ti"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#V"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Mn"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Fe"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Co"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ni"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cu"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Zn"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ga"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ge"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#As"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Se"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Br"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Kr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Rb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Y"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Zr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Nb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Mo"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Tc"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ru"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Rh"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pd"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ag"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cd"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#In"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sn"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Te"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#I"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Xe"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cs"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ba"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#La"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ce"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Nd"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pm"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sm"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Eu"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Gd"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Tb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Dy"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ho"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Er"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Tm"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Yb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Lu"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Hf"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ta"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#W"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Re"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Os"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ir"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pt"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Au"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Hg"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Tl"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pb"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Bi"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Po"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#At"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Rn"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Fr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ra"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ac"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Th"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pa"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#U"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Np"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Pu"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Am"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cm"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Bk"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Cf"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Es"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Fm"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Md"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#No"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Lr"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Rf"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Db"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Sg"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Bh"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Hs"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Mt"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Ds"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Rg"/>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/elements#Uub"/>
+
+  <!-- the atom types -->
+
+  <at:AtomType rdf:ID="Csp3">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Csp2">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Ccarbonyl">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Csp">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="H">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#H"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Osp3">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Osp2">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nsp3">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nsp2">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Nsp">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="F">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Cl">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Br">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="I">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="S">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Sonium">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Soxide">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="SO2">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Si">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="LP">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Halc">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Ccyc">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Hamine">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Hcarbacid">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Pine">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Btrig">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Btetrah">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Hvinyl">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+  <at:AtomType rdf:ID="Pate">
+    <at:hasElement rdf:resource="http://cdk.sf.net/ontologies/elements#C"/>
+  </at:AtomType>
+
+</rdf:RDF>
