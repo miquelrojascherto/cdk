@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://cdk.sf.net/ontologies/atomtypemappings#" xml:base="http://cdk.sf.net/ontologies/atomtypemappings#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:atm="http://cdk.sf.net/ontologies/atomtypemappings#" 
+  xmlns:at="http://cdk.sf.net/ontologies/atomtypes#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:dc="http://dublincore.org/"
+>
+
+  <owl:Ontology rdf:about="">
+    <rdfs:label>Atom Type Mapping Ontology</rdfs:label>
+    <owl:versionInfo>$Id$</owl:versionInfo>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="http://cdk.sf.net/ontologies/atomtypes#AtomType"/>
+  <owl:ObjectProperty rdf:about="http://cdk.sf.net/ontologies/atomtypemappings#mapsToType"/>
+  <owl:ObjectProperty rdf:about="http://cdk.sf.net/ontologies/atomtypemappings#equivalentAsType"/>
+
+  <!-- CDK Atom Types -->
+
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#C.sp3">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Csp3"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#C.sp">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Csp"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#C.sp2">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Csp2"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#O.sp3">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Osp3"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#O.sp2">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Osp2"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#N.sp3">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Nsp3"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#N.sp2">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Nsp2"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#N.amide">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#N.am"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#N.sp1">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Nsp"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#S.2">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#S"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#S.3">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#S"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#S.oxide">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Soxide"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#S.planar3">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#S"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#F">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#F"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Cl">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#CL"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Cl.perchlorate">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#CL"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Cl.chlorate">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#CL"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#I">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#I"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Br">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#BR"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#P.ate">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#PTET"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Ni.2plus">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#NI2"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Fe.2plus">
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#FE2"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Ne">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#NE"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Ar">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#AR"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Kr">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#KR"/>
+  </owl:Thing>
+  <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Xe">
+    <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#XE"/>
+  </owl:Thing>
+
+</rdf:RDF>
