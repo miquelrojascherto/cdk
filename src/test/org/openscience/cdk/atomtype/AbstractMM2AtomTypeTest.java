@@ -53,7 +53,7 @@ abstract public class AbstractMM2AtomTypeTest extends AbstractAtomTypeTest {
 	}
 
 	public IAtomTypeMatcher getAtomTypeMatcher(IChemObjectBuilder builder) {
-		return SybylAtomTypeMatcher.getInstance(builder);
+		return CDKBasedMM2AtomTypeMatcher.getInstance(builder);
 	}
 
     public void assertAtomTypes(Map<String, Integer> testedAtomTypes, String[] expectedTypes, IAtomContainer mol) throws Exception {
