@@ -62,7 +62,7 @@
     <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#F"/>
   </owl:Thing>
   <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Cl">
-    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#CL"/>
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Cl"/>
   </owl:Thing>
   <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Cl.perchlorate">
     <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#CL"/>
@@ -74,7 +74,7 @@
     <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#I"/>
   </owl:Thing>
   <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#Br">
-    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#BR"/>
+    <atm:equivalentAsType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#Br"/>
   </owl:Thing>
   <owl:Thing rdf:about="http://cdk.sf.net/ontologies/atomtype/cdk#P.ate">
     <atm:mapsToType rdf:resource="http://cdk.sf.net/ontologies/atomtype/mm2#PTET"/>
