@@ -168,7 +168,7 @@ void AddFunGroup() {
     Token tok;
     tok = getToken(-1);
     attachedGroups.add (new AttachedGroup (tempLocation, tok.image) );
-    tempLocation = ArrayList<Token>();
+    tempLocation = new ArrayList<Token>();
 }
 
 JAVACODE
