@@ -149,7 +149,7 @@ JAVACODE
  */
 void AddHeadToken() {
     attachedSubstituents.add (new AttachedGroup (tempLocation, currentNumber) );
-    tempLocation = new Vector();
+    tempLocation = new ArrayList<Token>();
 }
 
 JAVACODE
@@ -157,7 +157,7 @@ void MakeMainChainIntoSubstituent() {
     attachedSubstituents.add (new AttachedGroup (tempLocation, mainChainPrefix) );
     currentNumber = 0;
     mainChainPrefix = 0;
-    tempLocation = new Vector();
+    tempLocation = new ArrayList<Token>();
 }
 
 JAVACODE
@@ -168,7 +168,7 @@ void AddFunGroup() {
     Token tok;
     tok = getToken(-1);
     attachedGroups.add (new AttachedGroup (tempLocation, tok.image) );
-    tempLocation = new Vector();
+    tempLocation = ArrayList<Token>();
 }
 
 JAVACODE
