@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -150,7 +151,7 @@ public class RssWriter extends DefaultChemObjectWriter {
 		    channelElement.appendChild(itemsElement);
 		    channelElement.addAttribute(new Attribute("rdf:about",NS_RDF,about));
 		    rdfElement.appendChild(channelElement);
-		    List list =new Vector();
+		    List list =new ArrayList();
 		    if(object instanceof IAtomContainerSet){
 		    	for(int i=0;i<((IAtomContainerSet)object).getAtomContainerCount();i++){
 		    		list.add(((IAtomContainerSet)object).getAtomContainer(i));
@@ -167,18 +168,17 @@ public class RssWriter extends DefaultChemObjectWriter {
 		      Element link2Element = new Element("link",NS_RSS10);
 		      link2Element.appendChild(new Text(easylink));
 		      itemElement.appendChild(link2Element);          
-		      String title=(String)chemObject.getProperties().get(CDKConstants.TITLE);
 		      if(titlemap.get(chemObject)!=null){
 			      Element title2Element = new Element("title",NS_RSS10);
 			      title2Element.appendChild(new Text((String)titlemap.get(chemObject)));
 			      itemElement.appendChild(title2Element);
 		      }
-		      if(title!=null){
+		      if((String)chemObject.getProperties().get(CDKConstants.TITLE) != null){
 		    	  Element description2Element = new Element("description",NS_RSS10);
-		    	  description2Element.appendChild(new Text(title));
+		    	  description2Element.appendChild(new Text((String)chemObject.getProperties().get(CDKConstants.TITLE)));
 		    	  itemElement.appendChild(description2Element);
 		          Element subjectElement = new Element("dc:subject",NS_DCELEMENTS);
-		          subjectElement.appendChild(new Text(title));
+		          subjectElement.appendChild(new Text((String)chemObject.getProperties().get(CDKConstants.TITLE)));
 		          itemElement.appendChild(subjectElement);
 		      }
 		      if(datemap.get(chemObject)!=null){
