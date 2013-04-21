@@ -76,14 +76,11 @@ public class OverlapResolver
 	 */
 	public double resolveOverlap(IAtomContainer ac, IRingSet sssr)
 	{
-
-		Vector overlappingAtoms = new Vector();
-		Vector overlappingBonds = new Vector();
 		logger.debug("Start of resolveOverlap");
-		double overlapScore = getOverlapScore(ac, overlappingAtoms, overlappingBonds);
+		double overlapScore = getOverlapScore(ac, new Vector());
 		if (overlapScore > 0)
 		{
-			overlapScore = displace(ac, overlappingAtoms, overlappingBonds);	
+			overlapScore = displace(ac, new Vector());	
 		}
 		logger.debug("overlapScore = " + overlapScore);
 		logger.debug("End of resolveOverlap");
@@ -99,7 +96,7 @@ public class OverlapResolver
 	 *@param  overlappingAtoms  Description of the Parameter
 	 *@param  overlappingBonds  Description of the Parameter
 	 */
-	public double displace(IAtomContainer ac, Vector overlappingAtoms, Vector overlappingBonds)
+	public double displace(IAtomContainer ac, Vector overlappingAtoms)
 	{
 		OverlapPair op = null;
 		IAtom a1 = null, a2 = null;
@@ -149,8 +146,7 @@ public class OverlapResolver
 				a1.getPoint2d().sub(v2);
 				logger.debug("Random variable: " + choice + ", displacing second atom");
 			}
-			overlapScore = getOverlapScore(ac, overlappingAtoms
-			, overlappingBonds);
+			overlapScore = getOverlapScore(ac, overlappingAtoms);
 			steps ++;
 		}while(overlapScore > 0 && !(steps > maxSteps));
 
@@ -181,11 +177,10 @@ public class OverlapResolver
 	 *@param  overlappingBonds  Description of the Parameter
 	 *@return                   The overlapScore value
 	 */
-	public double getOverlapScore(IAtomContainer ac, Vector overlappingAtoms, Vector overlappingBonds)
+	public double getOverlapScore(IAtomContainer ac, Vector overlappingAtoms)
 	{
 		double overlapScore = 0;
 		overlapScore = getAtomOverlapScore(ac, overlappingAtoms);
-		//overlapScore += getBondOverlapScore(ac, overlappingBonds);		
 		return overlapScore;
 	}
 
