@@ -19,23 +19,19 @@
 package org.openscience.cdk.renderer.visitor;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.renderer.AtomContainerRenderer;
-import org.openscience.cdk.renderer.RendererModel;
 import org.openscience.cdk.renderer.font.AWTFontManager;
 import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
 import org.openscience.cdk.renderer.generators.BasicBondGenerator;
@@ -43,7 +39,6 @@ import org.openscience.cdk.renderer.generators.BasicSceneGenerator;
 import org.openscience.cdk.renderer.generators.IGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 /**
  * @cdk.module  test-rendersvg
@@ -67,7 +62,7 @@ public class SVGGeneratorTest {
 	}
 
 	@Test
-	public void testEmptyModel() {
+	public void testEmptyModel() throws Exception {
 		IMolecule dummy = builder.newInstance(IMolecule.class);
         SVGGenerator svgGenerator = new SVGGenerator();
 		List<IGenerator<IAtomContainer>> generators =
@@ -78,30 +73,16 @@ public class SVGGeneratorTest {
 		generators.add(atomGenerator);
 		
 		AtomContainerRenderer renderer = new AtomContainerRenderer(generators, new AWTFontManager());
-		RendererModel model = renderer.getRenderer2DModel();
         renderer.paint(dummy, svgGenerator);
         String svg = svgGenerator.getResult();
-		Assert.assertTrue(svg.length()>0);
+		Assert.assertNotSame(0, svg.length());
 		
 		 // parse an XML document into a DOM tree
 	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 	    dbf.setValidating(true);
-	    DocumentBuilder parser = null;
-		try {
-			parser = dbf.newDocumentBuilder();
-		} catch (ParserConfigurationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    try {
-	    	Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
-	    } catch (SAXException e) {
-	        Assert.fail();
-	    } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+	    DocumentBuilder parser = dbf.newDocumentBuilder();
+	    Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
+	    Assert.assertNotNull(document);
 	}
 
 
