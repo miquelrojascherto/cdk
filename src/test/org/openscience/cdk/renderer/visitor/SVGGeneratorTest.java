@@ -80,13 +80,8 @@ public class SVGGeneratorTest {
         renderer.paint(dummy, svgGenerator);
         String svg = svgGenerator.getResult();
 		Assert.assertNotSame(0, svg.length());
-		
-		 // parse an XML document into a DOM tree
-	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-	    dbf.setValidating(true);
-	    DocumentBuilder parser = dbf.newDocumentBuilder();
-	    Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
-	    Assert.assertNotNull(document);
+
+		validateSVG(svg);
 	}
 
 	@Test
@@ -121,13 +116,20 @@ public class SVGGeneratorTest {
 		Assert.assertNotNull(svgGenerator);
 		String svg = svgGenerator.getResult();
 		Assert.assertNotSame(0, svg.length());
-		System.out.println(svg);
-		
+
+		validateSVG(svg);
+	}
+
+    private void validateSVG(String svg) throws Exception {
 		 // parse an XML document into a DOM tree
 	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	    dbf.setFeature("http://xml.org/sax/features/namespaces", false);
+	    dbf.setFeature("http://xml.org/sax/features/validation", false);
+	    dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
+	    dbf.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 	    DocumentBuilder parser = dbf.newDocumentBuilder();
 	    Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
 	    Assert.assertNotNull(document);
-	}
-
+    }
+    
 }
