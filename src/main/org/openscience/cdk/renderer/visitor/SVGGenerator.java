@@ -35,8 +35,9 @@ import java.util.List;
 import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
 
+import org.openscience.cdk.annotations.TestClass;
+import org.openscience.cdk.annotations.TestMethod;
 import org.openscience.cdk.renderer.RendererModel;
-import org.openscience.cdk.renderer.elements.OvalElement;
 import org.openscience.cdk.renderer.elements.*;
 import org.openscience.cdk.renderer.font.FreeSansBoldGM;
 import org.openscience.cdk.renderer.font.GlyphMetrics;
@@ -67,6 +68,7 @@ import org.openscience.cdk.renderer.generators.BasicSceneGenerator.Scale;
  * @cdk.bug 2403250
  * @jcp.issue #2
  */
+@TestClass("org.openscience.cdk.renderer.visitor.SVGGeneratorTest")
 public class SVGGenerator implements IDrawVisitor {
 
     /**
@@ -459,6 +461,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * width and height of the document which is set at last.
 	 * @return the SVG document as String
 	 */
+	@TestMethod("testEmptyModel")
 	public String getResult() {
 		drawNoBonds();
 		drawBonds();
@@ -818,6 +821,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param transform
 	 */
+	@TestMethod("testVisit")
     public void setTransform(AffineTransform transform) {
 		this.transform = transform;
 		this.transform.setToScale(30, -30);
