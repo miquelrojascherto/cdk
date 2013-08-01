@@ -105,6 +105,7 @@ public class SVGGenerator implements IDrawVisitor {
 	/***
 	 * Constructs a new generator which cannot be reused.
 	 */
+	@TestMethod("testConstructor")
 	public SVGGenerator() {
 		the_fm = new FreeSansBoldGM();
 		the_fm.init();
@@ -224,6 +225,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param element
 	 */
+	@TestMethod("testVisit")
 	public void visit(IRenderingElement element) {
 		elList.add(element);
 		
@@ -829,9 +831,11 @@ public class SVGGenerator implements IDrawVisitor {
 //		System.err.println(String.format("scale=%f zoom=%f\n", transform.getScaleX(), transform.getScaleY()));
 	}
 
+    @TestMethod("testSetFontManager")
     public void setFontManager(IFontManager fontManager) {
     }
 
+    @TestMethod("testSetRendererModel")
     public void setRendererModel(RendererModel rendererModel) {
         this.rendererModel = rendererModel;
     }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2011  Egon Willighagen <egonw@users.sf.net>
+/* Copyright (C) 2011,2013  Egon Willighagen <egonw@users.sf.net>
  *
  * Contact: cdk-devel@lists.sourceforge.net
  *
@@ -18,6 +18,8 @@
  */
 package org.openscience.cdk.renderer.visitor;
 
+import java.awt.Color;
+import java.awt.geom.AffineTransform;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,8 @@ import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.renderer.AtomContainerRenderer;
+import org.openscience.cdk.renderer.RendererModel;
+import org.openscience.cdk.renderer.elements.TextElement;
 import org.openscience.cdk.renderer.font.AWTFontManager;
 import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
 import org.openscience.cdk.renderer.generators.BasicBondGenerator;
@@ -85,5 +89,45 @@ public class SVGGeneratorTest {
 	    Assert.assertNotNull(document);
 	}
 
+	@Test
+	public void testConstructor() {
+		IDrawVisitor visitor = new SVGGenerator();
+		Assert.assertNotNull(visitor);
+	}
+
+	@Test
+	public void testSetFontManager() {
+		IDrawVisitor visitor = new SVGGenerator();
+		visitor.setFontManager(new AWTFontManager());
+		// at least we now know it did not crash...
+		Assert.assertNotNull(visitor);
+	}
+
+	@Test
+	public void testSetRendererModel() {
+		IDrawVisitor visitor = new SVGGenerator();
+		visitor.setRendererModel(new RendererModel());
+		// at least we now know it did not crash...
+		Assert.assertNotNull(visitor);
+	}
+
+    @Test
+	public void testVisit() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		svgGenerator.visit(new TextElement(2, 3, "Foo", Color.BLACK));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		System.out.println(svg);
+		
+		 // parse an XML document into a DOM tree
+	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+	    DocumentBuilder parser = dbf.newDocumentBuilder();
+	    Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
+	    Assert.assertNotNull(document);
+	}
 
 }
