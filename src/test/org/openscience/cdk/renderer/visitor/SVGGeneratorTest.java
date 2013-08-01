@@ -116,6 +116,8 @@ public class SVGGeneratorTest {
 		Assert.assertNotNull(svgGenerator);
 		String svg = svgGenerator.getResult();
 		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("<text"));
+		Assert.assertTrue(svg.contains("Foo"));
 
 		validateSVG(svg);
 	}

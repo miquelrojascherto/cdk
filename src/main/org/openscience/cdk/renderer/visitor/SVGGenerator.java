@@ -298,6 +298,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param textElement
 	 */
+	@TestMethod("testVisit")
 	public void draw (TextElement textElement) {
 		newline();
 		double[] p = transformPoint(textElement.xCoord, textElement.yCoord);
