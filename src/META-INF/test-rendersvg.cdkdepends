@@ -6,3 +6,5 @@ cdk-render.jar
 cdk-renderbasic.jar
 cdk-rendersvg.jar
 cdk-test.jar
+cdk-sdg.jar
+cdk-silent.jar
