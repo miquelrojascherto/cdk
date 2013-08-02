@@ -243,6 +243,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param oval
 	 */
+	@TestMethod("testVisit_Oval")
 	public void draw (OvalElement oval) {
 		newline();
 		double[] p1 = transformPoint(oval.xCoord - oval.radius, oval.yCoord - oval.radius);
@@ -324,6 +325,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * 
 	 * @param element
 	 */
+	@TestMethod("testVisit_TextGroup")
 	public void draw (TextGroupElement element) {
 		newline();
 		double[] pos = transformPoint(element.xCoord, element.yCoord);
@@ -546,6 +548,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param wedge
 	 */
+	@TestMethod("testVisit_WedgeLine")
 	public void draw (WedgeLineElement wedge) {
 		double[] p1 = transformPoint(wedge.firstPointX, wedge.firstPointY);
 		double[] p2 = transformPoint(wedge.secondPointX, wedge.secondPointY);
@@ -663,6 +666,7 @@ public class SVGGenerator implements IDrawVisitor {
      *
      * @param path
      */
+    @TestMethod("testVisit_Path")
 	public void draw (PathElement path) {
 
 	}
@@ -738,6 +742,7 @@ public class SVGGenerator implements IDrawVisitor {
      *
      * @param line
      */
+    @TestMethod("testVisit_Arrow")
     public void draw (ArrowElement line) {
 	double scale = rendererModel.getParameter(Scale.class).getDefault();      
 	double ahw = rendererModel.getParameter(ArrowHeadWidth.class).getDefault();      
@@ -804,6 +809,7 @@ public class SVGGenerator implements IDrawVisitor {
      *
      * @param rectangleElement
      */
+    @TestMethod("testVisit_Rectangle")
 	public void draw (RectangleElement rectangleElement) {
         double[] pA = this.transformPoint(rectangleElement.xCoord, rectangleElement.yCoord);
         double[] pB = this.transformPoint(rectangleElement.xCoord+rectangleElement.width, rectangleElement.yCoord);

@@ -24,6 +24,7 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.vecmath.Point2d;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -35,7 +36,13 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.renderer.AtomContainerRenderer;
 import org.openscience.cdk.renderer.RendererModel;
+import org.openscience.cdk.renderer.elements.ArrowElement;
+import org.openscience.cdk.renderer.elements.OvalElement;
+import org.openscience.cdk.renderer.elements.RectangleElement;
 import org.openscience.cdk.renderer.elements.TextElement;
+import org.openscience.cdk.renderer.elements.TextGroupElement;
+import org.openscience.cdk.renderer.elements.WedgeLineElement;
+import org.openscience.cdk.renderer.elements.WedgeLineElement.Direction;
 import org.openscience.cdk.renderer.font.AWTFontManager;
 import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
 import org.openscience.cdk.renderer.generators.BasicBondGenerator;
@@ -119,6 +126,113 @@ public class SVGGeneratorTest {
 		Assert.assertNotSame(0, svg.length());
 		Assert.assertTrue(svg.contains("<text"));
 		Assert.assertTrue(svg.contains("Foo"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_TextGroup() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		TextGroupElement element = new TextGroupElement(2.0, 3.0, "NH", Color.BLACK);
+		element.addChild("2", TextGroupElement.Position.SE);
+		svgGenerator.visit(element);
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("Atom-NH"));
+		Assert.assertTrue(svg.contains("<use"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_Oval() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		svgGenerator.visit(new OvalElement(2.0, 3.0, Color.BLACK));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("<ellipse"));
+		Assert.assertTrue(svg.contains("stroke:black"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_Path() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		List<Point2d> points = new ArrayList<Point2d>();
+		points.add(new Point2d(1.0, 2.0));
+		points.add(new Point2d(2.0, 1.0));
+		svgGenerator.visit(new org.openscience.cdk.renderer.elements.PathElement(points, Color.black));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		// not implemented yet
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_Arrow() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+    	RendererModel model = new RendererModel();
+    	model.registerParameters(new BasicSceneGenerator());
+    	svgGenerator.setRendererModel(model);
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		svgGenerator.visit(new ArrowElement(0.0, 0.0, 1.0, 0.0, 1.0, true, Color.black));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("<line"));
+		Assert.assertTrue(svg.contains("stroke:black"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_WedgeLine() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+    	RendererModel model = new RendererModel();
+    	model.registerParameters(new BasicSceneGenerator());
+    	model.registerParameters(new BasicBondGenerator());
+    	svgGenerator.setRendererModel(model);
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		svgGenerator.visit(new WedgeLineElement(0.0, 0.0, 1.0, 0.0, 1.0, true, Direction.toFirst, Color.black));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("<line"));
+		Assert.assertTrue(svg.contains("stroke:black"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testVisit_Rectangle() throws Exception {
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+		svgGenerator.visit(new RectangleElement(0.0, 0.0, 10.0, 10.0, Color.black));
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
+		Assert.assertTrue(svg.contains("<polyline"));
+		Assert.assertTrue(svg.contains("stroke:black"));
 
 		validateSVG(svg);
 	}
