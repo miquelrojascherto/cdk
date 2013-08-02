@@ -8,3 +8,5 @@ cdk-rendersvg.jar
 cdk-test.jar
 cdk-sdg.jar
 cdk-silent.jar
+cdk-extra.jar
+cdk-data.jar
