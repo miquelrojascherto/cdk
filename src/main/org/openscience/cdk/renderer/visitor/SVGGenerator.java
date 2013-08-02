@@ -67,6 +67,7 @@ import org.openscience.cdk.renderer.generators.BasicSceneGenerator.Scale;
  * @cdk.module rendersvg
  * @cdk.bug 2403250
  * @jcp.issue #2
+ * @cdk.githash
  */
 @TestClass("org.openscience.cdk.renderer.visitor.SVGGeneratorTest")
 public class SVGGenerator implements IDrawVisitor {
