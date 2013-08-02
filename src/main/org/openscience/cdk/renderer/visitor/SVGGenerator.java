@@ -239,7 +239,7 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 	
 	/**
-	 * Output of SVG corresponding to OvalElement parameter
+	 * Output of SVG corresponding to {@link OvalElement} parameter
 	 *
 	 * @param oval
 	 */
@@ -264,7 +264,7 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 
 	/**
-	 * Output of SVG corresponding to AtomSymbolElement parameter.
+	 * Output of SVG corresponding to {@link AtomSymbolElement} parameter.
 	 *
 	 * @param atomSymbol
 	 */
@@ -283,7 +283,7 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 
 	/**
-	 * Conversion of Java.awt.Color to SVG color string.
+	 * Conversion of {@link Color} to SVG color string.
 	 *
 	 * @param color
 	 */
@@ -299,7 +299,7 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 
 	/**
-	 * Output of SVG corresponding to TextElement parameter.
+	 * Output of SVG corresponding to {@link TextElement} parameter.
 	 *
 	 * @param textElement
 	 */
@@ -316,9 +316,9 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 	
 	/**
-	 * Output of SVG corresponding to TextGroupElement parameter.
+	 * Output of SVG corresponding to {@link TextGroupElement} parameter.
 	 *
-	 * At the time of this call, all that we need is in place:
+	 * <p>At the time of this call, all that we need is in place:
 	 * the SVG character macros are written and the bboxes computed.
 	 * The textgroup text is now placed with its center at the
 	 * position of the atom. Implicit hydrogens are added.
@@ -468,7 +468,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * This is where most of the work is done by calling
 	 * the 2nd and 3rd passes, and finally computing
 	 * width and height of the document which is set at last.
-	 * @return the SVG document as String
+	 * @return the SVG document as {@link String}
 	 */
 	@TestMethod("testEmptyModel")
 	public String getResult() {
@@ -495,10 +495,11 @@ public class SVGGenerator implements IDrawVisitor {
 	 * bond given by two point parameters. Needed for quality
 	 * output where bonds stop short of chemical symbols.
 	 *
-	 * Applies all collected bboxes to the two points and, if one is
+	 * <p>Applies all collected bboxes to the two points and, if one is
 	 * inside a bbox, places it at the bbox's edge, same direction.
 	 * Intended to be cumulative, i.e., both points may be moved more
 	 * than once, or never. Returns true if any segment is left.
+	 *
 	 * @param p1
 	 * @param p2
 	 */
@@ -544,7 +545,7 @@ public class SVGGenerator implements IDrawVisitor {
 	}
 
 	/**
-	 * Output of SVG corresponding to WedgeLineElement parameter.
+	 * Output of SVG corresponding to {@link WedgeLineElement} parameter.
 	 *
 	 * @param wedge
 	 */
@@ -661,7 +662,7 @@ public class SVGGenerator implements IDrawVisitor {
     }
 
     /**
-     * Output of SVG corresponding to PathElement parameter.
+     * Output of SVG corresponding to {@link PathElement} parameter.
      * Not yet implemented.
      *
      * @param path
