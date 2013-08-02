@@ -264,6 +264,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param atomSymbol
 	 */
+	@TestMethod("testRealWorldExample")
 	public void draw (AtomSymbolElement atomSymbol) {
 		newline();
 		double[] p = transformPoint(atomSymbol.xCoord, atomSymbol.yCoord);
@@ -669,6 +670,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 *
 	 * @param line
 	 */
+	@TestMethod("testRealWorldExample")
 	public void draw (LineElement line) {
 		newline();
 		double[] p1 = transformPoint(line.firstPointX, line.firstPointY);
