@@ -391,7 +391,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * is placed, the textgroups referring to the DEFS ids. For
 	 * intermediate caching, we first add strings to the DEFS block.
 	 */
-	public void drawNoBonds() {
+	private void drawNoBonds() {
 		newline();
 		svg.append("</defs>");
 		if (!tgMap.isEmpty()) { newline(); svg.append("<defs>"); }
@@ -445,7 +445,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * taking care to leave a small distance to atoms with
 	 * text.
 	 */
-	public void drawBonds() {
+	private void drawBonds() {
 		for (IRenderingElement element : elList) {
 			if (element instanceof WedgeLineElement)
 				draw((WedgeLineElement) element);
