@@ -5,13 +5,18 @@ package org.openscience.cdk.renderer.font;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openscience.cdk.annotations.TestClass;
+import org.openscience.cdk.annotations.TestMethod;
+
 /**
  * @cdk.module rendersvg
  */
+@TestClass("org.openscience.cdk.renderer.visitor.SVGGeneratorTest")
 public class FreeSansBoldGM {
 
 	public Map<Integer, GlyphMetrics> map;
 
+	@TestMethod("testVisit")
 	public void init() {
     map = new HashMap<Integer, GlyphMetrics>();
     map.put (0x25, new GlyphMetrics(22, 863, -20, 709, 889, "M206 701c103 0 184 -81 184 -184c0 -98 -84 -180 -184 -180c-101 0 -184 82 -184 182s83 182 184 182zM206 602c-47 0 -85 -38 -85 -83c0 -46 38 -84 85 -84c46 0 85 38 85 83c0 47 -38 84 -85 84zM606 709h76l-395 -729h-77zM679 352c103 0 184 -81 184 -185c0 -98 -84 -180 -184 -180c-101 0 -184 82 -184 183c0 100 83 182 184 182zM679 253c-47 0 -85 -38 -85 -84s38 -84 85 -84c46 0 85 38 85 83c0 47 -38 85 -85 85z"));
