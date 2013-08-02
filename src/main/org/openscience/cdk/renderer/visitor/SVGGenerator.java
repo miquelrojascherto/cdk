@@ -137,6 +137,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * @param x
 	 * @param y
 	 */
+	@TestMethod("testPointTransformations")
 	public double[] transformPoint(double x, double y) {
         double[] src = new double[] {x, y};
         double[] dest = new double[2];
@@ -150,6 +151,7 @@ public class SVGGenerator implements IDrawVisitor {
 	 * @param x
 	 * @param y
 	 */
+	@TestMethod("testPointTransformations")
 	public double[] invTransformPoint (double x, double y) {
         double[] src = new double[] {x, y};
         double[] dest = new double[2];

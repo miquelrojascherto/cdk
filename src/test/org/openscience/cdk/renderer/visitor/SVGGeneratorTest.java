@@ -160,5 +160,16 @@ public class SVGGeneratorTest {
 	    Document document = parser.parse (new ByteArrayInputStream (svg.getBytes()));
 	    Assert.assertNotNull(document);
     }
-    
+
+    @Test
+    public void testPointTransformations() {
+    	double originalX = 5.67;
+    	double originalY = 1.23;
+    	SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setTransform(new AffineTransform());
+    	double[] transformed = svgGenerator.transformPoint(originalX, originalY);
+    	double[] newOriginal = svgGenerator.invTransformPoint(transformed[0], transformed[1]);
+    	Assert.assertEquals(originalX, newOriginal[0], 0.01);
+    	Assert.assertEquals(originalY, newOriginal[1], 0.01);
+    }
 }
