@@ -42,6 +42,7 @@ import org.openscience.cdk.renderer.generators.BasicBondGenerator;
 import org.openscience.cdk.renderer.generators.BasicSceneGenerator;
 import org.openscience.cdk.renderer.generators.IGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import org.openscience.cdk.templates.MoleculeFactory;
 import org.w3c.dom.Document;
 
 /**
@@ -118,6 +119,32 @@ public class SVGGeneratorTest {
 		Assert.assertNotSame(0, svg.length());
 		Assert.assertTrue(svg.contains("<text"));
 		Assert.assertTrue(svg.contains("Foo"));
+
+		validateSVG(svg);
+	}
+
+    @Test
+	public void testRealWorldExample() throws Exception {
+    	IMolecule molecule = MoleculeFactory.make124Triazole();
+    	molecule = layout(molecule);
+    	List<IGenerator<IAtomContainer>> generators =
+				new ArrayList<IGenerator<IAtomContainer>>();
+		generators.add(new BasicSceneGenerator());
+		generators.add(new BasicBondGenerator());
+		BasicAtomGenerator atomGenerator = new BasicAtomGenerator();
+		generators.add(atomGenerator);
+		
+		AtomContainerRenderer renderer = new AtomContainerRenderer(generators, new AWTFontManager());
+        
+        SVGGenerator svgGenerator = new SVGGenerator();
+		svgGenerator.setFontManager(new AWTFontManager());
+		svgGenerator.setTransform(new AffineTransform());
+        renderer.paint(molecule, svgGenerator);
+
+		// at least we now know it did not crash...
+		Assert.assertNotNull(svgGenerator);
+		String svg = svgGenerator.getResult();
+		Assert.assertNotSame(0, svg.length());
 
 		validateSVG(svg);
 	}
