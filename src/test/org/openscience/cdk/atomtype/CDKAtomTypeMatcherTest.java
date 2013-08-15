@@ -4055,6 +4055,20 @@ public class CDKAtomTypeMatcherTest extends AbstractCDKAtomTypeTest {
     }
 
     @Test
+    public void testElementswithNullFormalCharge() throws Exception {
+		IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+    	for (int i=1; i<=92; i++) { // all natural elements
+    		String symbol = PeriodicTable.getSymbol(i);
+    		IAtomContainer mol = builder.newInstance(IAtomContainer.class);
+    		IAtom testedAtom = builder.newInstance(IAtom.class,symbol);
+    		testedAtom.setFormalCharge(null);
+    		mol.addAtom(testedAtom);
+    		IAtomTypeMatcher atm = getAtomTypeMatcher(mol.getBuilder());
+    		IAtomType foundType = atm.findMatchingAtomType(mol, testedAtom);
+    	}
+    }
+
+    @Test
     public void test_Zn_metallic() throws Exception {
         IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
         IMolecule mol = builder.newInstance(IMolecule.class);
