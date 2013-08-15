@@ -784,11 +784,13 @@ public class Convertor {
                     // don't output this one. It's covered by addTitle()
                 } else if (!(stringKey.startsWith("org.openscience.cdk"))) {
                     Object value = props.get(key);
-                    CMLScalar scalar = new CMLScalar();
-                    this.checkPrefix(scalar);
-                    scalar.setTitle((String) key);
-                    scalar.setValue(value.toString());
-                    cmlElement.appendChild(scalar);
+                    if (value != null) {
+                    	CMLScalar scalar = new CMLScalar();
+                    	this.checkPrefix(scalar);
+                    	scalar.setTitle((String) key);
+                    	scalar.setValue(value.toString());
+                    	cmlElement.appendChild(scalar);
+                    }
                 }
             }
         }
