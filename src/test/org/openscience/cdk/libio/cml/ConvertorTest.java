@@ -25,11 +25,16 @@
  */
 package org.openscience.cdk.libio.cml;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import nu.xom.Document;
 import nu.xom.Serializer;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openscience.cdk.Atom;
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.CDKTestCase;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IBond;
@@ -37,9 +42,6 @@ import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.libio.md.MDMolecule;
 import org.xmlcml.cml.element.CMLAtom;
 import org.xmlcml.cml.element.CMLBond;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 /**
  * @cdk.module test-libiocml
@@ -126,5 +128,22 @@ public class ConvertorTest extends CDKTestCase {
 
     }
 
+    @Test
+    public void testNullPropertyValue() throws Exception {
+    	IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+        IBond bond = builder.newInstance(IBond.class);
+        bond.setProperty(CDKConstants.ANNOTATIONS, null);
+
+        Convertor convertor = new Convertor(true, null);
+        CMLBond cmlBond = convertor.cdkBondToCMLBond(bond);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        Serializer serializer = new Serializer(out, "UTF-8");
+        serializer.write(new Document(cmlBond));
+        out.close();
+
+        String actual = new String(out.toByteArray());
+        Assert.assertTrue(actual.contains("bond"));
+    }
 
 }
