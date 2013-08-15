@@ -720,7 +720,7 @@ public class Convertor {
             cmlBond.setOrder("D");
         } else if (border == CDKConstants.BONDORDER_TRIPLE) {
             cmlBond.setOrder("T");
-        } else {
+        } else if (border != CDKConstants.UNSET) {
             CMLScalar scalar = new CMLScalar();
             this.checkPrefix(scalar);
 //            scalar.setDataType("xsd:float");
