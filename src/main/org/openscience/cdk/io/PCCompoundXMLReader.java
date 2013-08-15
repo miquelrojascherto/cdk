@@ -111,6 +111,8 @@ public class PCCompoundXMLReader extends DefaultChemObjectReader {
 		for (int i=0; i<interfaces.length; i++) {
 			if (IMolecule.class.equals(interfaces[i])) return true;
 		}
+		Class superClass = classObject.getSuperclass();
+	    if (superClass != null) return this.accepts(superClass);
 		return false;
 	}
 
