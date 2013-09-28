@@ -3026,12 +3026,11 @@ public class AtomTypeMatcherTest {
     
     @Test public void testAssumeExplicitHydrogens() throws Exception {
     	IAtomContainer mol = new AtomContainer();
-    	AtomTypeMatcher atm = AtomTypeMatcher.getInstance(
-    		mol, AtomTypeMatcher.REQUIRE_EXPLICIT_HYDROGENS
-    	);
-
     	mol.addAtom(new Atom("O"));
     	mol.getAtom(0).setFormalCharge(+1);
+    	AtomTypeMatcher atm = AtomTypeMatcher.getInstance(
+        	mol, AtomTypeMatcher.REQUIRE_EXPLICIT_HYDROGENS
+    	);
     	Assert.assertNull(atm.findMatchingAtomType(mol.getAtom(0)));
     	
     	for (int i=0; i<3; i++) {
