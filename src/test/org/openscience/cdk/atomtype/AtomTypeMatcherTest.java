@@ -2075,6 +2075,7 @@ public class AtomTypeMatcherTest {
         };
         IAtomContainer molecule = MoleculeFactory.makePyrrole();
         molecule.getAtom(3).setSymbol("N");
+        molecule.getAtom(3).setAtomicNumber(7);
         molecule.addAtom(molecule.getBuilder().newInstance(IAtom.class,"C"));
         molecule.addBond(1,5, IBond.Order.SINGLE);
         assertAtomTypes(testedAtomTypes, expectedTypes, molecule);
@@ -2400,6 +2401,7 @@ public class AtomTypeMatcherTest {
 		};
 		IAtomContainer molecule = MoleculeFactory.makePyridine();
 		molecule.getAtom(4).setSymbol("S");
+		molecule.getAtom(4).setAtomicNumber(16);
 		molecule.getAtom(4).setFormalCharge(+1);
     	assertAtomTypes(testedAtomTypes, expectedTypes, molecule);
 	}
