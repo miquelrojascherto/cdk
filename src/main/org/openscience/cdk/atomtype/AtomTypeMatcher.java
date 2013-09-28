@@ -160,6 +160,8 @@ public class AtomTypeMatcher {
         case "Ca": type = perceiveCalcium(atomContainer, atom); break;
         case "W": type = perceiveTungstun(atomContainer, atom); break;
         case "Ar": type = perceiveArgon(atomContainer, atom); break;
+        case "He": type = perceiveHelium(atomContainer, atom); break;
+        case "Kr": type = perceiveKrypton(atomContainer, atom); break;
         case "Xe": type = perceiveXenon(atomContainer, atom); break;
         case "Rn": type = perceiveRadon(atomContainer, atom); break;
         case "Ne": type = perceiveNeon(atomContainer, atom); break;
