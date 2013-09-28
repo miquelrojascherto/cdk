@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +100,7 @@ public class AtomTypeFactory {
     private static ILoggingTool logger =
         LoggingToolFactory.createLoggingTool(AtomTypeFactory.class);
     private static Map<String, AtomTypeFactory> tables = null;
-    private List<IAtomType> atomTypes = null;
+    private Map<String,IAtomType> atomTypes = null;
 
 	/**
 	 * Private constructor for the AtomTypeFactory singleton.
@@ -106,7 +108,7 @@ public class AtomTypeFactory {
 	 *
 	 */
     private AtomTypeFactory(String configFile, IChemObjectBuilder builder) {
-        atomTypes = new ArrayList<IAtomType>(100);
+        atomTypes = new HashMap<String,IAtomType>(100);
         readConfiguration(configFile, builder);
     }
 
@@ -115,7 +117,7 @@ public class AtomTypeFactory {
 	 *
 	 */
     private AtomTypeFactory(InputStream ins, String format, IChemObjectBuilder builder) {
-        atomTypes = new ArrayList<IAtomType>(100);
+        atomTypes = new HashMap<String,IAtomType>(100);
         readConfiguration(ins, format, builder);
     }
 
@@ -244,7 +246,9 @@ public class AtomTypeFactory {
 			atc.setInputStream(ins);
 			try
 			{
-				atomTypes = atc.readAtomTypes(builder);
+				for (IAtomType type : atc.readAtomTypes(builder)) {
+					atomTypes.put(type.getAtomTypeName(), type);
+				}
 			} catch (Exception exc)
 			{
 				logger.error("Could not read AtomType's from file due to: ", exc.getMessage());
@@ -253,7 +257,7 @@ public class AtomTypeFactory {
 		} else
 		{
 			logger.debug("AtomTypeConfigurator was null!");
-			atomTypes = new ArrayList<IAtomType>();
+			atomTypes = Collections.emptyMap();
 		}
 	}
 
@@ -280,11 +284,8 @@ public class AtomTypeFactory {
     @TestMethod("testGetAtomType_String,testGetAtomTypeFromJmol,testGetAtomTypeFromMM2,testGetAtomTypeFromPDB")
     public IAtomType getAtomType(String identifier) throws NoSuchAtomTypeException
 	{
-        for (IAtomType atomType : atomTypes) {
-            if (atomType.getAtomTypeName().equals(identifier)) {
-                return atomType;
-            }
-        }
+    	IAtomType type = atomTypes.get(identifier);
+        if (type != null) return type;
         throw new NoSuchAtomTypeException("The AtomType " + identifier + " could not be found");
 	}
 
@@ -302,7 +303,7 @@ public class AtomTypeFactory {
 	{
         logger.debug("Request for atomtype for symbol ", symbol);
         List<IAtomType> atomList = new ArrayList<IAtomType>();
-        for (IAtomType atomType : atomTypes) {
+        for (IAtomType atomType : atomTypes.values()) {
             // logger.debug("  does symbol match for: ", atomType);
             if (atomType.getSymbol().equals(symbol)) {
                 // logger.debug("Atom type found for symbol: ", atomType);
@@ -335,7 +336,7 @@ public class AtomTypeFactory {
 	{
 		logger.debug("Returning list of size: ", getSize());
 		List<IAtomType> atomtypeList = new ArrayList<IAtomType>();
-        for (IAtomType atomType : atomTypes) {
+        for (IAtomType atomType : atomTypes.values()) {
             IAtomType clone;
             try {
                 clone = (IAtomType) atomType.clone();
