@@ -1974,6 +1974,9 @@ public class AtomTypeMatcherTest {
         mol.addAtom(atom2);
         mol.addAtom(atom3);
         mol.addAtom(atom4);
+        mol.addBond(0,1,CDKConstants.BONDORDER_SINGLE);
+        mol.addBond(1,2,CDKConstants.BONDORDER_SINGLE);
+        mol.addBond(1,3,CDKConstants.BONDORDER_SINGLE);
 
         String[] expectedTypes = new String[]{
             "O.sp3", "Ga", "O.sp3", "O.sp3"
