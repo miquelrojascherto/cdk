@@ -108,7 +108,7 @@ public class AtomTypeFactory {
 	 *
 	 */
     private AtomTypeFactory(String configFile, IChemObjectBuilder builder) {
-        atomTypes = new HashMap<String,IAtomType>(100);
+        atomTypes = new HashMap<String,IAtomType>(300);
         readConfiguration(configFile, builder);
     }
 
@@ -117,7 +117,7 @@ public class AtomTypeFactory {
 	 *
 	 */
     private AtomTypeFactory(InputStream ins, String format, IChemObjectBuilder builder) {
-        atomTypes = new HashMap<String,IAtomType>(100);
+        atomTypes = new HashMap<String,IAtomType>(300);
         readConfiguration(ins, format, builder);
     }
 
