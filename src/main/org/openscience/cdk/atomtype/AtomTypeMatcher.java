@@ -41,6 +41,7 @@ import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.interfaces.ISingleElectron;
 import org.openscience.cdk.tools.manipulator.BondManipulator;
+import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 /**
  * Atom Type matcher that perceives atom types as defined in the CDK atom type list
@@ -107,33 +108,49 @@ public class AtomTypeMatcher {
         if (atom instanceof IPseudoAtom) {
         	return factory.getAtomType("X");
         }
+        Integer atomicNumberObj = atom.getAtomicNumber();
         String symbol = atom.getSymbol(); 
+        if (atomicNumberObj == null) atomicNumberObj =  PeriodicTable.getAtomicNumber(symbol);
+        if (atomicNumberObj == null) return null; // e.g. unknown element symbols
+        int atomicNumber = atomicNumberObj.intValue();
+
+        switch (atomicNumber) {
+        case 1: type = perceiveHydrogens(atomContainer, atom); break;
+        case 2: type = perceiveHelium(atomContainer, atom); break;
+        case 3: type = perceiveLithium(atomContainer, atom); break;
+        case 4: type = perceiveBeryllium(atomContainer, atom); break;
+        case 5: type = perceiveBorons(atomContainer, atom); break;
+        case 6: type = perceiveCarbons(atomContainer, atom); break;
+        case 7: type = perceiveNitrogens(atomContainer, atom); break;
+        case 8: type = perceiveOxygens(atomContainer, atom); break;
+        case 9: type = perceiveFluors(atomContainer, atom); break;
+        case 10: type = perceiveNeon(atomContainer, atom); break;
+        case 11: type = perceiveSodium(atomContainer, atom); break;
+        case 12: type = perceiveMagnesium(atomContainer, atom); break;
+        case 13: type = perceiveAluminium(atomContainer, atom); break;
+        case 14: type = perceiveSilicon(atomContainer, atom); break;
+        case 15: type = perceivePhosphors(atomContainer, atom); break;
+        case 16: type = perceiveSulphurs(atomContainer, atom); break;
+        case 17: type = perceiveChlorine(atomContainer, atom); break;
+        case 18: type = perceiveArgon(atomContainer, atom); break;
+        case 19: type = perceivePotassium(atomContainer, atom); break;
+        case 20: type = perceiveCalcium(atomContainer, atom); break;
+        case 34: type = perceiveSelenium(atomContainer, atom); break;
+        case 35: type = perceiveBromine(atomContainer, atom); break;
+        case 52: type = perceiveTellurium(atomContainer, atom); break;
+        case 53: type = perceiveIodine(atomContainer, atom); break;
+        case 84: type = perceivePolodium(atomContainer, atom); break;
+        }
+        if (type != null) return type;
         switch (symbol) {
-        case "C": type = perceiveCarbons(atomContainer, atom); break;
-        case "O": type = perceiveOxygens(atomContainer, atom); break;
-        case "N": type = perceiveNitrogens(atomContainer, atom); break;
-        case "H": type = perceiveHydrogens(atomContainer, atom); break;
-        case "S" : type = perceiveSulphurs(atomContainer, atom); break;
-        case "P" : type = perceivePhosphors(atomContainer, atom); break;
-        case "Br": type = perceiveBromine(atomContainer, atom); break;
-        case "Cl": type = perceiveChlorine(atomContainer, atom); break;
-        case "F": type = perceiveFluors(atomContainer, atom); break;
-        case "I": type = perceiveIodine(atomContainer, atom); break;
-        case "Li": type = perceiveLithium(atomContainer, atom); break;
-        case "Si": type = perceiveSilicon(atomContainer, atom); break;
-        case "B": type = perceiveBorons(atomContainer, atom); break;
-        case "Be": type = perceiveBeryllium(atomContainer, atom); break;
         case "Cr": type = perceiveChromium(atomContainer, atom); break;
-        case "Se": type = perceiveSelenium(atomContainer, atom); break;
         case "Mo": type = perceiveMolybdenum(atomContainer, atom); break;
         case "Rb": type = perceiveRubidium(atomContainer, atom); break;
-        case "Te": type = perceiveTellurium(atomContainer, atom); break;
         case "Cu": type = perceiveCopper(atomContainer, atom); break;
         case "Ba": type = perceiveBarium(atomContainer, atom); break;
         case "Ga": type = perceiveGallium(atomContainer, atom); break;
         case "Ru": type = perceiveRuthenium(atomContainer, atom); break;
         case "Zn": type = perceiveZinc(atomContainer, atom); break;
-        case "Al": type = perceiveAluminium(atomContainer, atom); break;
         case "Ni": type = perceiveNickel(atomContainer, atom); break;
         case "Gd": type = perceiveGadolinum(atomContainer, atom); break;
         case "Ge": type = perceiveGermanium(atomContainer, atom); break;
@@ -153,22 +170,14 @@ public class AtomTypeMatcher {
         case "In": type = perceiveIndium(atomContainer, atom); break;
         case "Pu": type = perceivePlutonium(atomContainer, atom); break;
         case "Th": type = perceiveThorium(atomContainer, atom); break;
-        case "K": type = perceivePotassium(atomContainer, atom); break;
         case "Mn": type = perceiveManganese(atomContainer, atom); break;
-        case "Mg": type = perceiveMagnesium(atomContainer, atom); break;
-        case "Na": type = perceiveSodium(atomContainer, atom); break;
         case "As": type = perceiveArsenic(atomContainer, atom); break;
         case "Cd": type = perceiveCadmium(atomContainer, atom); break;
-        case "Ca": type = perceiveCalcium(atomContainer, atom); break;
         case "W": type = perceiveTungstun(atomContainer, atom); break;
-        case "Ar": type = perceiveArgon(atomContainer, atom); break;
-        case "He": type = perceiveHelium(atomContainer, atom); break;
         case "Kr": type = perceiveKrypton(atomContainer, atom); break;
         case "Xe": type = perceiveXenon(atomContainer, atom); break;
         case "Rn": type = perceiveRadon(atomContainer, atom); break;
-        case "Ne": type = perceiveNeon(atomContainer, atom); break;
         case "Sn": type = perceiveStannum(atomContainer, atom); break;
-        case "Po": type = perceivePolodium(atomContainer, atom); break;
         case "Sc": type = perceiveScandium(atomContainer, atom); break;
         }
         return type;
