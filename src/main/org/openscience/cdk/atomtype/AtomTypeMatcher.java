@@ -65,6 +65,8 @@ public class AtomTypeMatcher {
 	private IAtomContainer atomContainer = null;
 	private IBond.Order[] maxBondOrders = null;
 	private int[] neighborCounts = null;
+	private int[] piBondCounts = null;
+	private int[] singleBondCounts = null;
 	private SpanningTree st;
 	private boolean[] isRingAtom = null;
 
@@ -433,12 +435,19 @@ public class AtomTypeMatcher {
 		int atomCount = this.atomContainer.getAtomCount();
 		maxBondOrders = new IBond.Order[atomCount]; // all null, which is always lowest
 		neighborCounts = new int[atomCount]; // all 0, which sounds like a good default
+		piBondCounts = new int[atomCount];
+		singleBondCounts = new int[atomCount];
 
 		for (IBond bond : atomContainer.bonds()) {
 			IBond.Order order = bond.getOrder();
 			for (IAtom bondAtom : bond.atoms()) {
 				int bondAtomCount = atomContainer.getAtomNumber(bondAtom);
 				neighborCounts[bondAtomCount]++; // assume no bond double, etc
+				if (order == IBond.Order.DOUBLE) {
+					piBondCounts[bondAtomCount]++;
+				} else if (order == IBond.Order.SINGLE) {
+					singleBondCounts[bondAtomCount]++;
+				}
 				IBond.Order prevOrder = maxBondOrders[bondAtomCount];
 				if (prevOrder == null || BondManipulator.isHigherOrder(order, prevOrder))
 					maxBondOrders[bondAtomCount] = order;
@@ -644,7 +653,7 @@ public class AtomTypeMatcher {
     				nextAtom.getHybridization() == Hybridization.SP2) {
     				// OK, it's SP2
     				count++;
-    			} else if (countAttachedDoubleBonds(atomContainer, nextAtom) > 0) {
+    			} else if (piBondCounts[atomContainer.getAtomNumber(nextAtom)] > 0) {
     				// OK, it's SP2
     				count++;
     			} else if (atomContainer.getBond(atom, nextAtom).getFlag(CDKConstants.ISAROMATIC)) {
@@ -2492,11 +2501,13 @@ public class AtomTypeMatcher {
     }
 
 	private int countAttachedDoubleBonds(IAtomContainer container, IAtom atom) {
-    	return countAttachedBonds(container, atom, IBond.Order.DOUBLE, null);
+		if (piBondCounts == null) cacheProperties();
+    	return piBondCounts[container.getAtomNumber(atom)];
     }
     
     private int countAttachedSingleBonds(IAtomContainer atomContainer, IAtom atom) {
-        return countAttachedBonds(atomContainer, atom, IBond.Order.SINGLE, null);
+		if (singleBondCounts == null) cacheProperties();
+        return singleBondCounts[atomContainer.getAtomNumber(atom)];
     }
 
     private boolean hasAromaticBond(IAtomContainer container, IAtom atom) {
