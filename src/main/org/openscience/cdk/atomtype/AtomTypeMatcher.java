@@ -1042,7 +1042,8 @@ public class AtomTypeMatcher {
     	List<IAtom> neighbors = atomContainer.getConnectedAtomsList(atomContainer.getAtom(atomNumber));
     	for (IAtom neighbor : neighbors) {
     		if (neighbor.getSymbol().equals("C")) {
-    			if (countAttachedDoubleBonds(atomNumber, "O") == 1) return true;
+    			int neighborNumber = atomContainer.getAtomNumber(neighbor);
+    			if (countAttachedDoubleBonds(neighborNumber, "O") == 1) return true;
     		}
     	}
     	return false;
@@ -1052,7 +1053,8 @@ public class AtomTypeMatcher {
         List<IAtom> neighbors = atomContainer.getConnectedAtomsList(atomContainer.getAtom(atomNumber));
         for (IAtom neighbor : neighbors) {
             if (neighbor.getSymbol().equals("C")) {
-                if (countAttachedDoubleBonds(atomNumber, "S") == 1) return true;
+            	int neighborNumber = atomContainer.getAtomNumber(neighbor);
+                if (countAttachedDoubleBonds(neighborNumber, "S") == 1) return true;
             }
         }
         return false;
