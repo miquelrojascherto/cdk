@@ -93,19 +93,18 @@ public class AtomTypeMatcher {
     
     @TestMethod("testFindMatchingAtomType_IAtomContainer")
     public IAtomType[] findMatchingAtomTypes() throws CDKException {
-        IAtomType[] types = new IAtomType[atomContainer.getAtomCount()];
-        int typeCounter = 0;
-        for (IAtom atom : atomContainer.atoms()) {
-            types[typeCounter] = findMatchingAtomType(atom);
-            typeCounter++;
+    	int atomCount = atomContainer.getAtomCount();
+        IAtomType[] types = new IAtomType[atomCount];
+        for (int i=0;i<atomCount; i++) {
+            types[i] = findMatchingAtomType(i);
         }
         return types;
     }
 
     @TestMethod("testFindMatchingAtomType_IAtomContainer_IAtom")
-    public IAtomType findMatchingAtomType(IAtom atom)
-        throws CDKException {
+    public IAtomType findMatchingAtomType(int atomNumber) throws CDKException {
         IAtomType type = null;
+        IAtom atom = atomContainer.getAtom(atomNumber);
         if (atom instanceof IPseudoAtom) {
         	return factory.getAtomType("X");
         }
@@ -114,8 +113,6 @@ public class AtomTypeMatcher {
         if (atomicNumberObj == null) atomicNumberObj =  PeriodicTable.getAtomicNumber(symbol);
         if (atomicNumberObj == null) return null; // e.g. unknown element symbols
         int atomicNumber = atomicNumberObj.intValue();
-        
-        int atomNumber = this.atomContainer.getAtomNumber(atom);
 
         switch (atomicNumber) {
         case 1: return perceiveHydrogens(atomNumber);

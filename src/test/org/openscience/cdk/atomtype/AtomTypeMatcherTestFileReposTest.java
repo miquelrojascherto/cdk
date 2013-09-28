@@ -240,7 +240,7 @@ public class AtomTypeMatcherTestFileReposTest extends CDKTestCase {
         assert mol != null;
         for (IAtom atom : mol.atoms()) {
             results.tested++;
-            IAtomType matched = matcher.findMatchingAtomType(atom);
+            IAtomType matched = matcher.findMatchingAtomType(mol.getAtomNumber(atom));
             if (matched == null) {
                 results.failed++;
                 System.out.println("Could not match atom: " + results.tested + " in file " + filename);

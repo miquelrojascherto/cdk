@@ -106,7 +106,7 @@ public class AtomTypeMatcherTest {
         	new AtomContainer());
         IAtomType[] types = matcher.findMatchingAtomTypes();
         for (int i=0; i<types.length; i++) {
-            IAtomType type = matcher.findMatchingAtomType(mol.getAtom(i));
+            IAtomType type = matcher.findMatchingAtomType(i);
             Assert.assertEquals(type.getAtomTypeName(), types[i].getAtomTypeName());
         }
     }
@@ -129,7 +129,7 @@ public class AtomTypeMatcherTest {
         mol.addAtom(atom);
         AtomTypeMatcher matcher = AtomTypeMatcher.getInstance(
             mol);
-        Assert.assertNull(matcher.findMatchingAtomType(atom));
+        Assert.assertNull(matcher.findMatchingAtomType(mol.getAtomNumber(atom)));
     }
 
     @Test public void testEthene() throws Exception {
@@ -3031,7 +3031,7 @@ public class AtomTypeMatcherTest {
     	AtomTypeMatcher atm = AtomTypeMatcher.getInstance(
         	mol, AtomTypeMatcher.REQUIRE_EXPLICIT_HYDROGENS
     	);
-    	Assert.assertNull(atm.findMatchingAtomType(mol.getAtom(0)));
+    	Assert.assertNull(atm.findMatchingAtomType(0));
     	
     	for (int i=0; i<3; i++) {
     		mol.addAtom(new Atom("H"));
@@ -3041,7 +3041,7 @@ public class AtomTypeMatcherTest {
             mol, AtomTypeMatcher.REQUIRE_EXPLICIT_HYDROGENS
         );
     	assertAtomType(testedAtomTypes, "O.plus", 
-    		atm.findMatchingAtomType(mol.getAtom(0))
+    		atm.findMatchingAtomType(0)
     	);    	
     }
 
@@ -3634,7 +3634,7 @@ public class AtomTypeMatcherTest {
     	for (IAtom atom : ac.atoms()) {
     		type = AtomTypeMatcher.getInstance(
     				ac
-    			).findMatchingAtomType(atom);
+    			).findMatchingAtomType(ac.getAtomNumber(atom));
     		Assert.assertNotNull(type);
     	}
     }
@@ -6627,7 +6627,7 @@ public class AtomTypeMatcherTest {
 		AtomTypeMatcher atm = AtomTypeMatcher.getInstance(mol);
         for (int i=0; i<expectedTypes.length; i++) {
         	IAtom testedAtom = mol.getAtom(i);
-        	IAtomType foundType = atm.findMatchingAtomType(testedAtom); 
+        	IAtomType foundType = atm.findMatchingAtomType(i); 
         	assertAtomType(testedAtomTypes, 
         		"Incorrect perception for atom " + i,
         		expectedTypes[i], foundType
@@ -6635,7 +6635,7 @@ public class AtomTypeMatcherTest {
         	assertConsistentProperties(mol, testedAtom, foundType);
         	// test for bug #1890702: configure, and then make sure the same atom type is perceived
         	AtomTypeManipulator.configure(testedAtom, foundType);
-        	IAtomType secondType = atm.findMatchingAtomType(testedAtom);
+        	IAtomType secondType = atm.findMatchingAtomType(i);
         	assertAtomType(testedAtomTypes, 
         		"Incorrect perception *after* assigning atom type properties for atom " + i,
         		expectedTypes[i], secondType
@@ -6650,8 +6650,7 @@ public class AtomTypeMatcherTest {
         );
         AtomTypeMatcher atm = AtomTypeMatcher.getInstance(mol);
         for (int i=0; i<expectedTypes.length; i++) {
-            IAtom testedAtom = mol.getAtom(i);
-            IAtomType foundType = atm.findMatchingAtomType(testedAtom);
+            IAtomType foundType = atm.findMatchingAtomType(i);
             assertAtomType(testedAtomTypes,
                            "Incorrect perception for atom " + i,
                            expectedTypes[i], foundType
