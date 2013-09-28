@@ -25,6 +25,7 @@ package org.openscience.cdk;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -423,6 +424,7 @@ public class AtomContainer extends ChemObject
 	 */
 	public Iterable<IBond> bonds()
 	{
+		if (bondCount == 0) return Collections.emptyList();
 		return new Iterable<IBond>() {
             public Iterator<IBond> iterator() {
                 return new BondIterator();
@@ -459,6 +461,7 @@ public class AtomContainer extends ChemObject
 	 */
 	public Iterable<ILonePair> lonePairs()
 	{
+		if (lonePairCount == 0) return Collections.emptyList();
         return new Iterable<ILonePair>() {
             public Iterator<ILonePair> iterator() {
                 return new LonePairIterator();
@@ -495,6 +498,7 @@ public class AtomContainer extends ChemObject
 	 */
 	public Iterable<ISingleElectron> singleElectrons()
 	{
+		if (singleElectronCount == 0) return Collections.emptyList();
 		return new Iterable<ISingleElectron>() {
             public Iterator<ISingleElectron> iterator() {                
                 return new SingleElectronIterator();
@@ -531,6 +535,7 @@ public class AtomContainer extends ChemObject
 	 */
 	public Iterable<IElectronContainer> electronContainers()
 	{
+		if (bondCount + lonePairCount + singleElectronCount == 0) return Collections.emptyList();
 		return new Iterable<IElectronContainer>() {
             public Iterator<IElectronContainer> iterator() {
                 return new ElectronContainerIterator();
