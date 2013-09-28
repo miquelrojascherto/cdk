@@ -438,15 +438,9 @@ public class AtomTypeMatcher {
 				int bondAtomCount = atomContainer.getAtomNumber(bondAtom);
 				neighborCounts[bondAtomCount]++; // assume no bond double, etc
 				IBond.Order prevOrder = maxBondOrders[bondAtomCount];
-				if (BondManipulator.isHigherOrder(order, prevOrder))
+				if (prevOrder == null || BondManipulator.isHigherOrder(order, prevOrder))
 					maxBondOrders[bondAtomCount] = order;
 			}
-		}
-
-		st = new SpanningTree(atomContainer);
-		isRingAtom = new boolean[atomCount];
-		for (int i=0; i<atomCount; i++) {
-			isRingAtom[i] = st.getCyclicFragmentsContainer().contains(atomContainer.getAtom(i));
 		}
 	}
 	
@@ -977,21 +971,32 @@ public class AtomTypeMatcher {
 
     }
 
+    private void cacheRingProperties() {
+    	if (st == null) {
+    		int atomCount = atomContainer.getAtomCount();
+    		st = new SpanningTree(atomContainer);
+    		isRingAtom = new boolean[atomCount];
+    		if (st.getBondsCyclicCount() != 0)
+    			for (int i=0; i<atomCount; i++) {
+    				isRingAtom[i] = st.getCyclicFragmentsContainer().contains(atomContainer.getAtom(i));
+    			}
+    	}
+    }
+    
     private boolean isRingAtom(IAtom atom, IAtomContainer atomContainer) {
-    	if (isRingAtom == null) cacheProperties();
+    	if (st == null) cacheRingProperties();
         return isRingAtom[atomContainer.getAtomNumber(atom)];
     }
 
     private IRing getRing(IAtom atom, IAtomContainer atomContainer) {
-    	if (st == null) cacheProperties();
+    	if (st == null) cacheRingProperties();
+    	if (!isRingAtom[atomContainer.getAtomNumber(atom)]) return null;
     	try {
-    		if (st.getCyclicFragmentsContainer().contains(atom)) {
-    			IRingSet set = st.getAllRings();
-    			for (int i=0; i<set.getAtomContainerCount(); i++) {
-    				IRing ring = (IRing)set.getAtomContainer(i);
-    				if (ring.contains(atom)) {
-    					return ring;
-    				}
+    		IRingSet set = st.getAllRings();
+    		for (int i=0; i<set.getAtomContainerCount(); i++) {
+    			IRing ring = (IRing)set.getAtomContainer(i);
+    			if (ring.contains(atom)) {
+    				return ring;
     			}
     		}
     	} catch (NoSuchAtomException exception) {
