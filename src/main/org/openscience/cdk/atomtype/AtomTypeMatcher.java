@@ -78,6 +78,7 @@ public class AtomTypeMatcher {
 			atomContainer.getBuilder()
 		);
     	this.mode = mode;
+    	cacheProperties();
     }
     
     @TestMethod("testGetInstance_IChemObjectBuilder")
@@ -474,12 +475,10 @@ public class AtomTypeMatcher {
 	}
 	
     private int getConnectedAtomsCount(int atomNumber) {
-		if (neighborCounts == null) cacheProperties();
 		return neighborCounts[atomNumber];
 	}
 
     private Order getMaximumBondOrder(int atomNumber) {
-		if (maxBondOrders == null) cacheProperties();
 		return maxBondOrders[atomNumber];
 	}
 
@@ -1007,15 +1006,13 @@ public class AtomTypeMatcher {
     }
 
     private void cacheRingProperties() {
-    	if (st == null) {
-    		int atomCount = atomContainer.getAtomCount();
-    		st = new SpanningTree(atomContainer);
-    		isRingAtom = new boolean[atomCount];
-    		if (st.getBondsCyclicCount() != 0)
-    			for (int i=0; i<atomCount; i++) {
-    				isRingAtom[i] = st.getCyclicFragmentsContainer().contains(atomContainer.getAtom(i));
-    			}
-    	}
+    	int atomCount = atomContainer.getAtomCount();
+    	st = new SpanningTree(atomContainer);
+    	isRingAtom = new boolean[atomCount];
+    	if (st.getBondsCyclicCount() != 0)
+    		for (int i=0; i<atomCount; i++) {
+    			isRingAtom[i] = st.getCyclicFragmentsContainer().contains(atomContainer.getAtom(i));
+    		}
     }
     
     private boolean isRingAtom(int atomNumber) {
@@ -2575,12 +2572,10 @@ public class AtomTypeMatcher {
     }
 
 	private int countAttachedDoubleBonds(int atomNumber) {
-		if (piBondCounts == null) cacheProperties();
     	return piBondCounts[atomNumber];
     }
     
     private int countAttachedSingleBonds(int atomNumber) {
-		if (singleBondCounts == null) cacheProperties();
         return singleBondCounts[atomNumber];
     }
 
