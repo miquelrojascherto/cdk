@@ -2636,13 +2636,13 @@ public class AtomTypeMatcher {
     	IAtom atom = atomContainer.getAtom(atomNumber);
     	if (mode == REQUIRE_EXPLICIT_HYDROGENS) {
     		// make sure no implicit hydrogens were assumed
-    		int actualContainerCount = atomContainer.getConnectedAtomsCount(atom);
+    		int actualContainerCount = neighborCounts[atomNumber];
     		int requiredContainerCount = type.getFormalNeighbourCount();
     		if (actualContainerCount != requiredContainerCount)
     			return false;
     	} else if (atom.getImplicitHydrogenCount() != CDKConstants.UNSET) {
     		// confirm correct neighbour count
-    		int connectedAtoms = atomContainer.getConnectedAtomsCount(atom);
+    		int connectedAtoms = neighborCounts[atomNumber];
     		int hCount = atom.getImplicitHydrogenCount();
     		int actualNeighbourCount =  connectedAtoms + hCount;
     		int requiredNeighbourCount = type.getFormalNeighbourCount();
