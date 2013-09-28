@@ -3037,6 +3037,9 @@ public class AtomTypeMatcherTest {
     		mol.addAtom(new Atom("H"));
     		mol.addBond(new Bond(mol.getAtom(i+1), mol.getAtom(0), IBond.Order.SINGLE));
     	}
+    	atm = AtomTypeMatcher.getInstance(
+            mol, AtomTypeMatcher.REQUIRE_EXPLICIT_HYDROGENS
+        );
     	assertAtomType(testedAtomTypes, "O.plus", 
     		atm.findMatchingAtomType(mol.getAtom(0))
     	);    	
