@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKTestCase;
-import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.Element;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IElement;
@@ -82,21 +81,21 @@ public class BODRIsotopesTest extends CDKTestCase {
 
     @Test
     public void testGetElement_String() throws Exception {
-		XMLIsotopeFactory elfac = XMLIsotopeFactory.getInstance(new ChemObject().getBuilder());
+		IsotopeFactory elfac = BODRIsotopes.getInstance();
         IElement element = elfac.getElement("Br");
 		Assert.assertEquals(35, element.getAtomicNumber().intValue());
 	}    
 
     @Test
     public void testGetElement_int() throws Exception {
-		XMLIsotopeFactory elfac = XMLIsotopeFactory.getInstance(new ChemObject().getBuilder());
+		IsotopeFactory elfac = BODRIsotopes.getInstance();
         IElement element = elfac.getElement(6);
 		Assert.assertEquals("C", element.getSymbol());
 	}    
 
     @Test
     public void testGetElementSymbol_int() throws Exception {
-		XMLIsotopeFactory elfac = XMLIsotopeFactory.getInstance(new ChemObject().getBuilder());
+		IsotopeFactory elfac = BODRIsotopes.getInstance();
         String symbol = elfac.getElementSymbol(8);
 		Assert.assertEquals("O", symbol);
 	}    
