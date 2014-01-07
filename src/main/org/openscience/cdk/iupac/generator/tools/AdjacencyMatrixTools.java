@@ -44,7 +44,7 @@ public class AdjacencyMatrixTools {
      * @return An adjacency matrix for the carbon atoms in the given AtomContainer.
      */
     public static int[][] getCarbonOnly(AtomContainer ac) {
-    	IAtomContainer copy = (IAtomContainer)ac.getBuilder().newAtomContainer(ac);
+    	IAtomContainer copy = ac.getBuilder().newInstance(IAtomContainer.class, ac);
         for (int i = 0; i < ac.getAtomCount(); i++) {
         	IAtom a = copy.getAtom(i);
             if (!a.getSymbol().equals("C")) {

@@ -24,7 +24,7 @@
 package org.openscience.cdk.iupac.generator.sectiona;
 
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
 import org.openscience.cdk.iupac.generator.IUPACNamePart;
 import org.openscience.cdk.iupac.generator.NamingRule;
@@ -46,7 +46,7 @@ public class Rule1dot1 extends NamingRule {
 
     public IUPACNamePart apply(AtomContainer m) {
         IUPACNamePart inp = null;
-        if (m instanceof Molecule) {
+        if (m instanceof IAtomContainer) {
             if (((((Integer)m.getProperty(ELEMENT_COUNT)).intValue() == 2) &&
                 (((Integer)m.getProperty(CARBON_COUNT)).intValue() > 0) &&
                 (((Integer)m.getProperty(HYDROGEN_COUNT)).intValue() > 0)) ||
@@ -57,9 +57,9 @@ public class Rule1dot1 extends NamingRule {
                 // second requirement is that molecule is an
                 // n-alkane with length CARBON_COUNT
                 try {
-                    IsomorphismTester it = new IsomorphismTester(new Molecule(m));
+                    IsomorphismTester it = new IsomorphismTester(m);
                     int length = ((Integer)m.getProperty(CARBON_COUNT)).intValue();
-                    Molecule nalkane = MoleculeFactory.makeAlkane(length);
+                    IAtomContainer nalkane = MoleculeFactory.makeAlkane(length);
                     if (it.isIsomorphic(nalkane)) {
                         // final requirements is that this rule can name
                         // this n-alkane compound

@@ -24,7 +24,6 @@
 package org.openscience.cdk.iupac.generator.sectiona;
 
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.iupac.generator.IUPACNamePart;
 import org.openscience.cdk.iupac.generator.NumberingRule;
 

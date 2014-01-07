@@ -23,18 +23,24 @@
  */
 package org.openscience.cdk.iupac.generator;
 
+import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Vector;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Fragment;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.config.Isotopes;
 import org.openscience.cdk.graph.ConnectivityChecker;
-import org.openscience.cdk.tools.HydrogenAdder;
-import org.openscience.cdk.tools.MFAnalyser;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 /**
  * This class implements a IUPAC name generator.
@@ -55,7 +61,7 @@ public class IUPACNameGenerator {
     private Vector rules;
     private IUPACName name;
 
-    private HydrogenAdder hydrogenAdder;
+    private CDKHydrogenAdder hydrogenAdder;
 
     private org.openscience.cdk.tools.LoggingTool logger;
 
@@ -73,7 +79,7 @@ public class IUPACNameGenerator {
 
         // instantiate the saturation checker
         try {
-            hydrogenAdder = new HydrogenAdder();
+            hydrogenAdder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
         } catch (Exception e) {
             logger.error("Cannot instantiate hydrogen adder!");
         }
@@ -134,7 +140,7 @@ public class IUPACNameGenerator {
             logger.debug(exception);
 		}
         
-        if (!(m instanceof Fragment || m instanceof IMolecule)) {
+        if (!(m instanceof Fragment || m instanceof IAtomContainer)) {
             return;
         }
         // set some initial values
@@ -144,21 +150,29 @@ public class IUPACNameGenerator {
         /** First calculate some general statistics that
          *  can speed up the application of rules.
          */
-        IMolecule molecule = new org.openscience.cdk.Molecule(m);
+        IAtomContainer molecule = new AtomContainer(m);
         try {
-            hydrogenAdder.addExplicitHydrogensToSatisfyValency(molecule);
+            hydrogenAdder.addImplicitHydrogens(molecule);
+            AtomContainerManipulator.convertImplicitToExplicitHydrogens(molecule);
         } catch (Exception exception) {
             logger.error("Error while saturating molecule: ", exception.getMessage());
             logger.debug(exception);
         };
-        MFAnalyser mfa = new MFAnalyser(molecule);
-        logger.info("Naming struct with MF: " + mfa.getMolecularFormula());
-        m.setProperty(IRule.ELEMENT_COUNT, new Integer(mfa.getElementCount()));
-        m.setProperty(IRule.CARBON_COUNT, new Integer(mfa.getAtomCount("C")));
-        m.setProperty(IRule.HYDROGEN_COUNT, new Integer(mfa.getAtomCount("H")));
-        m.setProperty(IRule.CHLORO_COUNT, new Integer(mfa.getAtomCount("Cl")));
-        m.setProperty(IRule.BROMO_COUNT, new Integer(mfa.getAtomCount("Br")));
-        m.setProperty(IRule.FLUORO_COUNT, new Integer(mfa.getAtomCount("F")));
+        IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(molecule);
+        m.setProperty(IRule.ELEMENT_COUNT, new Integer(formula.getIsotopeCount()));
+        // FIXME: count all $foo isotopes, not just major ones
+        Isotopes isoFac = null;
+		try {
+			isoFac = Isotopes.getInstance();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        m.setProperty(IRule.CARBON_COUNT, new Integer(formula.getIsotopeCount(isoFac.getIsotope("C", 12))));
+        m.setProperty(IRule.HYDROGEN_COUNT, new Integer(formula.getIsotopeCount(isoFac.getIsotope("H", 11))));
+        m.setProperty(IRule.CHLORO_COUNT, new Integer(formula.getIsotopeCount(isoFac.getIsotope("Cl", 31))));
+        m.setProperty(IRule.BROMO_COUNT, new Integer(formula.getIsotopeCount(isoFac.getIsotope("Br", 79))));
+        m.setProperty(IRule.FLUORO_COUNT, new Integer(formula.getIsotopeCount(isoFac.getIsotope("F", 19))));
 
         // step 0
         logger.info("Step 0");
@@ -215,10 +229,10 @@ public class IUPACNameGenerator {
         // step 3
         logger.info("Step 3");
         try {
-            IMoleculeSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(ac);
-            java.util.Iterator molecules = moleculeSet.molecules();
+            IAtomContainerSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(ac);
+            Iterator<IAtomContainer> molecules = moleculeSet.atomContainers().iterator();
             while (molecules.hasNext()) {
-                FragmentWithAtomicValencies fwav = new FragmentWithAtomicValencies((IMolecule)molecules.next());
+                FragmentWithAtomicValencies fwav = new FragmentWithAtomicValencies(molecules.next());
                 for (int i=0; i < fwav.getAtomCount(); i++) {
                     try {
                     	org.openscience.cdk.interfaces.IAtom a = fwav.getAtom(i);
@@ -287,11 +301,11 @@ public class IUPACNameGenerator {
         }
     }
 
-	public HydrogenAdder getHydrogenAdder() {
+	public CDKHydrogenAdder getHydrogenAdder() {
 		return hydrogenAdder;
 	}
 
-	public void setHydrogenAdder(HydrogenAdder hydrogenAdder) {
+	public void setHydrogenAdder(CDKHydrogenAdder hydrogenAdder) {
 		this.hydrogenAdder = hydrogenAdder;
 	}
 

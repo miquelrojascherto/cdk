@@ -23,8 +23,12 @@
  */
 package org.openscience.cdk.iupac.generator.sectiona;
 
+import java.util.Iterator;
+
+import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
 import org.openscience.cdk.iupac.generator.IUPACNamePart;
 import org.openscience.cdk.iupac.generator.NamingRule;
@@ -55,10 +59,11 @@ public class Rule2dot1 extends NamingRule {
     public IUPACNamePart apply(IAtomContainer m) {
         IUPACNamePart inp = null;
         /* structure may not have valencies */
-        if (m instanceof Molecule) {
-            Molecule isobutane = IsoAlkanes.getIsobutane();
-            Molecule isopentane = IsoAlkanes.getIsopentane();
-            Molecule isohexane = IsoAlkanes.getIsohexane();
+        if (m instanceof IAtomContainer) {
+        	IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+        	IAtomContainer isobutane = IsoAlkanes.getIsobutane(builder);
+        	IAtomContainer isopentane = IsoAlkanes.getIsopentane(builder);
+        	IAtomContainer isohexane = IsoAlkanes.getIsohexane(builder);
             // check if molecule is CH only
             if (((((Integer)m.getProperty(ELEMENT_COUNT)).intValue() == 2) &&
                 (((Integer)m.getProperty(CARBON_COUNT)).intValue() > 0) &&
@@ -66,7 +71,7 @@ public class Rule2dot1 extends NamingRule {
                 ((((Integer)m.getProperty(ELEMENT_COUNT)).intValue() == 1) &&
                 (((Integer)m.getProperty(CARBON_COUNT)).intValue() > 0))) {
                 try {
-                    IsomorphismTester it = new IsomorphismTester(new Molecule(m));
+                    IsomorphismTester it = new IsomorphismTester(m);
                     m.setProperty(COMPLETED_FLAG, "yes");
                     if (it.isIsomorphic(isobutane)) {
                         inp = new IUPACNamePart(localize("isobutane"), this);
@@ -100,7 +105,7 @@ public class Rule2dot1 extends NamingRule {
                 copy.add(m);
 //                System.err.println("cp: " + copy);
                 IAtomContainer longestChain = ap.getInitialLongestChain(
-                    new Molecule(deleteNonCarbonAtoms(copy))
+                    deleteNonCarbonAtoms(copy)
                 );
 //                System.err.println("AC: " + longestChain);
 
@@ -126,7 +131,7 @@ public class Rule2dot1 extends NamingRule {
     private IAtomContainer deleteNonCarbonAtoms(IAtomContainer ac) throws Exception {
         IAtomContainer result = (IAtomContainer)ac.clone();
 //        System.out.println("Deleting non carbon atoms...");
-        java.util.Iterator atoms = ac.atoms();
+        Iterator<IAtom> atoms = ac.atoms().iterator();
         while (atoms.hasNext()) {
         	org.openscience.cdk.interfaces.IAtom atom = (org.openscience.cdk.interfaces.IAtom)atoms.next();
             if (!"C".equals(atom.getSymbol())) {

@@ -24,7 +24,7 @@
 package org.openscience.cdk.iupac.generator.sectionc;
 
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.iupac.generator.IUPACNamePart;
 import org.openscience.cdk.iupac.generator.NamingRule;
 
@@ -44,7 +44,7 @@ public class Rule103dot1 extends NamingRule {
     public IUPACNamePart apply(AtomContainer m) {
         IUPACNamePart inp = null;
         m.setProperty(COMPLETED_FLAG, "no");
-        if (m instanceof Molecule) {
+        if (m instanceof IAtomContainer) {
             if ((((Integer)m.getProperty(BROMO_COUNT)).intValue() > 0) ||
                 (((Integer)m.getProperty(CHLORO_COUNT)).intValue() > 0) ||
                 (((Integer)m.getProperty(FLUORO_COUNT)).intValue() > 0)) {
