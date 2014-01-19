@@ -55,6 +55,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IDoubleBondStereochemistry;
+import org.openscience.cdk.interfaces.ISingleElectron;
 import org.openscience.cdk.interfaces.IStereoElement;
 import org.openscience.cdk.interfaces.ITetrahedralChirality;
 import org.openscience.cdk.interfaces.ITetrahedralChirality.Stereo;
@@ -272,13 +273,25 @@ public class InChIGenerator {
             iatom.setImplicitH(implicitH != null ? implicitH : -1);
             
             // Check if radical
-            int count = atomContainer.getConnectedSingleElectronsCount(atom);
+            List<ISingleElectron> singleElectrons = atomContainer.getConnectedSingleElectronsList(atom);
+            int count = singleElectrons.size();
             if (count == 0) {
                 // TODO - how to check whether singlet or undefined multiplicity
             } else if (count == 1) {
                 iatom.setRadical(INCHI_RADICAL.DOUBLET);
             } else if (count == 2) {
-                iatom.setRadical(INCHI_RADICAL.TRIPLET);
+            	// does it have spins set for both electrons
+            	if (singleElectrons.get(0).getSpin() == null ||
+            		singleElectrons.get(1).getSpin() == null) {
+            		// OK, we do not have enough information and default to triple (as before this commit)
+            		iatom.setRadical(INCHI_RADICAL.TRIPLET);
+            	}
+            	// it can be singlet or triplet
+            	if (singleElectrons.get(0).getSpin() == singleElectrons.get(1).getSpin()) {
+            		iatom.setRadical(INCHI_RADICAL.TRIPLET);
+            	} else {
+            		iatom.setRadical(INCHI_RADICAL.SINGLET);
+            	}
             } else {
                 throw new CDKException("Unrecognised radical type");
             }
