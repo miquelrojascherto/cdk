@@ -21,6 +21,7 @@ package org.openscience.cdk.silent;
 
 import java.io.Serializable;
 
+import org.openscience.cdk.annotations.TestMethod;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.ISingleElectron;
 
@@ -149,6 +150,21 @@ public class SingleElectron extends ElectronContainer implements Serializable, I
 		return clone;
 	}
 
+	private Spin spin = null;
+	
+	/** {@inheritDoc} */
+	@Override
+	@TestMethod("testSpin")
+	public void setSpin(Spin spin) {
+		this.spin = spin;
+	}
+
+	/** {@inheritDoc} */
+	@Override
+	@TestMethod("testSpin")
+	public Spin getSpin() {
+		return this.spin;
+	}
 }
 
 

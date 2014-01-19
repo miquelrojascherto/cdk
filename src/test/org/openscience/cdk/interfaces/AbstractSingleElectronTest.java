@@ -26,6 +26,7 @@ package org.openscience.cdk.interfaces;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openscience.cdk.interfaces.ISingleElectron.Spin;
 
 /**
  * Checks the functionality of {@link ISingleElectron} implementations.
@@ -99,5 +100,14 @@ public abstract class AbstractSingleElectronTest extends AbstractElectronContain
         Assert.assertEquals(1, ec.getElectronCount().intValue());
         ec.setElectronCount(null);
         Assert.assertEquals(1, ec.getElectronCount().intValue());
+    }
+
+    @Test public void testSpin() {
+        ISingleElectron ec = (ISingleElectron)newChemObject();
+        Assert.assertNull(ec.getSpin());
+        ec.setSpin(Spin.UP);
+        Assert.assertEquals(Spin.UP, ec.getSpin());
+        ec.setSpin(Spin.DOWN);
+        Assert.assertEquals(Spin.DOWN, ec.getSpin());
     }
 }

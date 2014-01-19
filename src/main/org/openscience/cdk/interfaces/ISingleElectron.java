@@ -43,6 +43,16 @@ package org.openscience.cdk.interfaces;
  */
 public interface ISingleElectron extends IElectronContainer {
 
+	/**
+     * A list of permissible spin states.
+     * 
+     */
+	public enum Spin {
+		UP,
+		DOWN,
+		UNSET;
+	}
+	
     /**
      * Returns the associated Atom.
      *
@@ -66,6 +76,20 @@ public interface ISingleElectron extends IElectronContainer {
      * @return     true if this SingleElectron is associated with the atom
      */
     public boolean contains(IAtom atom);
+
+    /**
+     * Sets the spin state of this unpaired electron.
+     *
+     * @param   spin the new spin value
+     */
+    public void setSpin(Spin spin);
+
+    /**
+     * Gets the spin state of this unpaired electron.
+     *
+     * @return    the spin value
+     */
+    public Spin getSpin();
 
 }
 
