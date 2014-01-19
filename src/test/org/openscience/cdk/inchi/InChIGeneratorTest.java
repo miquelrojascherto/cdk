@@ -29,6 +29,8 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IDoubleBondStereochemistry;
+import org.openscience.cdk.interfaces.ISingleElectron;
+import org.openscience.cdk.interfaces.ISingleElectron.Spin;
 import org.openscience.cdk.interfaces.ITetrahedralChirality;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.ITetrahedralChirality.Stereo;
@@ -454,6 +456,52 @@ public class InChIGeneratorTest extends CDKTestCase {
             gen.getAuxInfo().contains("/CRV:1d")
         );
     }
+
+
+    @Test public void testGetStandardInchiFromMetheleDiRadical_Triplet() throws Exception {
+        IAtomContainer ac = new AtomContainer();
+        IAtom a = new Atom("C");
+        a.setImplicitHydrogenCount(2);
+        ac.addAtom(a);
+        ISingleElectron electron1 = new SingleElectron(a);
+        electron1.setSpin(Spin.UP);
+        ISingleElectron electron2 = new SingleElectron(a);
+        electron2.setSpin(Spin.UP);
+        ac.addSingleElectron(electron1);
+        ac.addSingleElectron(electron2);
+        InChIGenerator gen = getFactory().getInChIGenerator(ac);
+        Assert.assertEquals(INCHI_RET.OKAY, gen.getReturnStatus());
+        Assert.assertEquals(
+            "InChI=1S/CH2/h1H2",
+            gen.getInchi()
+        );
+        Assert.assertTrue(
+            gen.getAuxInfo().contains("/CRV:1t")
+        );
+    }
+
+    @Test public void testGetStandardInchiFromMetheleDiRadical_Singlet() throws Exception {
+        IAtomContainer ac = new AtomContainer();
+        IAtom a = new Atom("C");
+        a.setImplicitHydrogenCount(2);
+        ac.addAtom(a);
+        ISingleElectron electron1 = new SingleElectron(a);
+        electron1.setSpin(Spin.UP);
+        ISingleElectron electron2 = new SingleElectron(a);
+        electron2.setSpin(Spin.DOWN);
+        ac.addSingleElectron(electron1);
+        ac.addSingleElectron(electron2);
+        InChIGenerator gen = getFactory().getInChIGenerator(ac);
+        Assert.assertEquals(INCHI_RET.OKAY, gen.getReturnStatus());
+        Assert.assertEquals(
+            "InChI=1S/CH2/h1H2",
+            gen.getInchi()
+        );
+        Assert.assertTrue(
+            gen.getAuxInfo().contains("/CRV:1s")
+        );
+    }
+
     /**
      * Tests single bond is correctly passed to InChI.
      * 
