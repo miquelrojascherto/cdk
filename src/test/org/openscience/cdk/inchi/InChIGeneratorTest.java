@@ -20,6 +20,7 @@
 package org.openscience.cdk.inchi;
 
 import net.sf.jniinchi.INCHI_RET;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openscience.cdk.*;
@@ -449,8 +450,10 @@ public class InChIGeneratorTest extends CDKTestCase {
             "InChI=1S/CH3/h1H3",
             gen.getInchi()
         );
+        Assert.assertTrue(
+            gen.getAuxInfo().contains("/CRV:1d")
+        );
     }
-    
     /**
      * Tests single bond is correctly passed to InChI.
      * 
