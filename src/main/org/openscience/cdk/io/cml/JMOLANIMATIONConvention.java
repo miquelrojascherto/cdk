@@ -25,6 +25,7 @@
  */
 package org.openscience.cdk.io.cml;
 
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IChemSequence;
@@ -99,12 +100,15 @@ public class JMOLANIMATIONConvention extends CMLCoreModule {
             current = UNKNOWN;
             frame_energy = "";
         } else if (name.equals("list")) {
-            super.endElement(xpath, uri, local, raw);
+//            super.endElement(xpath, uri, local, raw);
 //            cdo.endObject("Animation");
             currentChemFile.addChemSequence(currentChemSequence);
         } else if (name.equals("molecule")) {
             super.endElement(xpath, uri, local, raw);
-//            cdo.endObject("Frame");
+            currentChemModel.setMoleculeSet(currentMoleculeSet);
+            currentChemSequence.addChemModel(currentChemModel);
+            currentMoleculeSet = currentMoleculeSet.getBuilder().newInstance(IAtomContainerSet.class);
+            currentChemModel = currentChemModel.getBuilder().newInstance(IChemModel.class);
             // nothing done in the CD upon this event
         } else {
             super.endElement(xpath, uri, local, raw);
