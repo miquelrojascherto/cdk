@@ -771,9 +771,9 @@ public class ReactionStructuresTest extends CDKTestCase {
         IAtomContainer expected1 = builder.newInstance(IAtomContainer.class);
         expected1.addAtom(builder.newInstance(IAtom.class,"C"));
         expected1.addAtom(builder.newInstance(IAtom.class,"N"));
-		expected1.addSingleElectron(builder.newInstance(ISingleElectron.class,expected1.getAtom(0)));
-        expected1.addAtom(builder.newInstance(IAtom.class,"C"));
 		expected1.addSingleElectron(builder.newInstance(ISingleElectron.class,expected1.getAtom(1)));
+        expected1.addAtom(builder.newInstance(IAtom.class,"C"));
+		expected1.addSingleElectron(builder.newInstance(ISingleElectron.class,expected1.getAtom(2)));
         expected1.addBond(0, 1, IBond.Order.SINGLE);
         expected1.addBond(1, 2, IBond.Order.SINGLE);
         expected1.addAtom(builder.newInstance(IAtom.class,"H"));
@@ -870,7 +870,6 @@ public class ReactionStructuresTest extends CDKTestCase {
 		addExplicitHydrogens(expected1);
 		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(expected1);
 	    LonePairElectronChecker lpcheck = new LonePairElectronChecker();
-		lpcheck.saturate(expected1);
 		
 
         String[] expectedTypes = {
