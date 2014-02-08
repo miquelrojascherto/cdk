@@ -45,11 +45,8 @@ import javax.vecmath.*;
 /**
  * 
  *	Circular fingerprints: for generating fingerprints that are functionally equivalent to ECFP-2/4/6 and FCFP-2/4/6 
- *  fingerprints, which are partially described by:
- *
- *		Rogers &amp; Hahn, J. Chem. Inf. Model., 50, 742–754 (2010)
- *		http://pubs.acs.org/doi/abs/10.1021/ci100050t
- *
+ *  fingerprints, which are partially described by Roger et al. {@cdk.cite Rogers2010}.
+ *  
  *  While the literature describes the method in detail, it does not disclose either the hashing technique for converting
  *  lists of integers into 32-bit codes, nor does it describe the scheme used to classify the atom types for creating
  *  the FCFP-class of descriptors. For this reason, the fingerprints that are created are not binary compatible with
@@ -71,10 +68,8 @@ import javax.vecmath.*;
  *  implementations: dependencies on CDK functionality that could be modified or improved in the future would break
  *  binary compatibility with formerly identical implementations on other platforms.
  *  
- *  For the FCFP class of fingerprints, atom typing is done using a scheme similar to that described in:
- *  
- *  	Green, Kahn, Savoy, Sprague, Teig: Chemical Function Queries for 3D Database Search
- *		Journal of Chemical Information and Computer Science, v.34, pp.1297-1308 (1994)
+ *  For the FCFP class of fingerprints, atom typing is done using a scheme similar to that described by
+ *  Green et al. {@cdk.cite Greene1994}.
  *  
  * @author         egonw
  * @cdk.created    2014-01-01

@@ -1327,5 +1327,31 @@ Method </bibtex:title>
             <bibtex:number>22</bibtex:number>
         </bibtex:article>
     </bibtex:entry>
-    
+
+    <bibtex:entry id="Rogers2010">
+        <bibtex:article>
+            <bibtex:title>Extended-Connectivity Fingerprints</bibtex:title>
+            <bibtex:author>Rogers, David and Hahn, Mathew</bibtex:author>
+            <bibtex:year>2010</bibtex:year>
+            <bibtex:journal>J. Chem. Inf. Model.</bibtex:journal>
+            <bibtex:volume>50</bibtex:volume>
+            <bibtex:number>5</bibtex:number>
+            <bibtex:pages>742-754</bibtex:pages>
+            <bibtex:doi>10.1021/ci100050t</bibtex:doi>
+        </bibtex:article>
+    </bibtex:entry>
+
+    <bibtex:entry id="Greene1994">
+        <bibtex:article>
+            <bibtex:title>Chemical Function Queries for 3D Database Search</bibtex:title>
+            <bibtex:author>Greene, Jonathan and Kahn, Scott and Savoj, Hamid and Sprague, Peter and Teig, Steven</bibtex:author>
+            <bibtex:year>1994</bibtex:year>
+            <bibtex:journal>J. Chem. Inf. Model.</bibtex:journal>
+            <bibtex:volume>34</bibtex:volume>
+            <bibtex:number>6</bibtex:number>
+            <bibtex:pages>1297-1308</bibtex:pages>
+            <bibtex:doi>10.1021/ci00022a012</bibtex:doi>
+        </bibtex:article>
+    </bibtex:entry>
+     
 </bibtex:file>
